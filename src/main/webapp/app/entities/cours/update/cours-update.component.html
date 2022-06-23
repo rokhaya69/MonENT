@@ -1,0 +1,111 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-cours-heading" data-cy="CoursCreateUpdateHeading" jhiTranslate="entMefpaiv2App.cours.home.createOrEditLabel">
+        Create or edit a Cours
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="entMefpaiv2App.cours.libelleCours" for="field_libelleCours">Libelle Cours</label>
+          <input
+            type="text"
+            class="form-control"
+            name="libelleCours"
+            id="field_libelleCours"
+            data-cy="libelleCours"
+            formControlName="libelleCours"
+          />
+          <div
+            *ngIf="editForm.get('libelleCours')!.invalid && (editForm.get('libelleCours')!.dirty || editForm.get('libelleCours')!.touched)"
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('libelleCours')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="entMefpaiv2App.cours.matiere" for="field_matiere">Matiere</label>
+          <select class="form-control" id="field_matiere" data-cy="matiere" name="matiere" formControlName="matiere">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="matiereOption.id === editForm.get('matiere')!.value?.id ? editForm.get('matiere')!.value : matiereOption"
+              *ngFor="let matiereOption of matieresSharedCollection; trackBy: trackMatiereById"
+            >
+              {{ matiereOption.intituleMatiere }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="entMefpaiv2App.cours.classe" for="field_classe">Classe</label>
+          <select class="form-control" id="field_classe" data-cy="classe" name="classe" formControlName="classe">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="classeOption.id === editForm.get('classe')!.value?.id ? editForm.get('classe')!.value : classeOption"
+              *ngFor="let classeOption of classesSharedCollection; trackBy: trackClasseById"
+            >
+              {{ classeOption.titre }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="entMefpaiv2App.cours.professeur" for="field_professeur">Professeur</label>
+          <select class="form-control" id="field_professeur" data-cy="professeur" name="professeur" formControlName="professeur">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                professeurOption.id === editForm.get('professeur')!.value?.id ? editForm.get('professeur')!.value : professeurOption
+              "
+              *ngFor="let professeurOption of professeursSharedCollection; trackBy: trackProfesseurById"
+            >
+              {{ professeurOption.nom }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="entMefpaiv2App.cours.syllabus" for="field_syllabus">Syllabus</label>
+          <select class="form-control" id="field_syllabus" data-cy="syllabus" name="syllabus" formControlName="syllabus">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="syllabusOption.id === editForm.get('syllabus')!.value?.id ? editForm.get('syllabus')!.value : syllabusOption"
+              *ngFor="let syllabusOption of syllabiSharedCollection; trackBy: trackSyllabusById"
+            >
+              {{ syllabusOption.nomSyllabus }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

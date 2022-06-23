@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity Classe.
+    -->
+    <changeSet id="20220623152512-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="filiere_id"
+                                 baseTableName="classe"
+                                 constraintName="fk_classe__filiere_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="filiere"/>
+
+        <addForeignKeyConstraint baseColumnNames="serie_id"
+                                 baseTableName="classe"
+                                 constraintName="fk_classe__serie_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="serie"/>
+
+        <addForeignKeyConstraint baseColumnNames="proviseur_id"
+                                 baseTableName="classe"
+                                 constraintName="fk_classe__proviseur_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="proviseur"/>
+
+        <addForeignKeyConstraint baseColumnNames="directeur_id"
+                                 baseTableName="classe"
+                                 constraintName="fk_classe__directeur_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="directeur"/>
+
+        <addForeignKeyConstraint baseColumnNames="surveillant_id"
+                                 baseTableName="classe"
+                                 constraintName="fk_classe__surveillant_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="surveillant"/>
+
+        <addForeignKeyConstraint baseColumnNames="professeur_id"
+                                 baseTableName="classe"
+                                 constraintName="fk_classe__professeur_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="professeur"/>
+    </changeSet>
+</databaseChangeLog>

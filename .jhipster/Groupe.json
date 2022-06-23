@@ -1,0 +1,53 @@
+{
+  "applications": ["entMefpaiv2"],
+  "changelogDate": "20220623152812",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "groupe",
+  "fields": [
+    {
+      "fieldName": "nomGroupe",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "unique"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Groupe",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "seance",
+      "otherEntityRelationshipName": "groupe",
+      "relationshipName": "seance",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "apprenant",
+      "otherEntityRelationshipName": "groupe",
+      "relationshipName": "apprenant",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "ressource",
+      "otherEntityRelationshipName": "groupe",
+      "relationshipName": "ressource",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "evaluation",
+      "otherEntityRelationshipName": "groupe",
+      "relationshipName": "evaluation",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "titre",
+      "otherEntityName": "classe",
+      "otherEntityRelationshipName": "groupe",
+      "relationshipName": "classe",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

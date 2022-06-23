@@ -1,0 +1,29 @@
+{
+  "entMefpaiv2App": {
+    "filiere": {
+      "home": {
+        "title": "Filieres",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Filiere",
+        "createOrEditLabel": "Create or edit a Filiere",
+        "notFound": "No Filieres found"
+      },
+      "created": "A new Filiere is created with identifier {{ param }}",
+      "updated": "A Filiere is updated with identifier {{ param }}",
+      "deleted": "A Filiere is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Filiere {{ id }}?"
+      },
+      "detail": {
+        "title": "Filiere"
+      },
+      "id": "ID",
+      "nomFiliere": "Nom Filiere",
+      "niveauQualif": "Niveau Qualif",
+      "autreFiliere": "Autre Filiere",
+      "autreQualif": "Autre Qualif",
+      "classe": "Classe",
+      "etablissement": "Etablissement"
+    }
+  }
+}

@@ -1,0 +1,89 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="apprenant">
+      <h2 data-cy="apprenantDetailsHeading"><span jhiTranslate="entMefpaiv2App.apprenant.detail.title">Apprenant</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ apprenant.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.apprenant.nom">Nom</span></dt>
+        <dd>
+          <span>{{ apprenant.nom }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.apprenant.prenom">Prenom</span></dt>
+        <dd>
+          <span>{{ apprenant.prenom }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.apprenant.email">Email</span></dt>
+        <dd>
+          <span>{{ apprenant.email }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.apprenant.adresse">Adresse</span></dt>
+        <dd>
+          <span>{{ apprenant.adresse }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.apprenant.telephone">Telephone</span></dt>
+        <dd>
+          <span>{{ apprenant.telephone }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.apprenant.sexe">Sexe</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'entMefpaiv2App.Sexe.' + apprenant.sexe }}">{{ apprenant.sexe }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.apprenant.photo">Photo</span></dt>
+        <dd>
+          <div *ngIf="apprenant.photo">
+            <a (click)="openFile(apprenant.photo, apprenant.photoContentType)">
+              <img
+                [src]="'data:' + apprenant.photoContentType + ';base64,' + apprenant.photo"
+                style="max-width: 100%"
+                alt="apprenant image"
+              />
+            </a>
+            {{ apprenant.photoContentType }}, {{ byteSize(apprenant.photo) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.apprenant.dateNaissance">Date Naissance</span></dt>
+        <dd>
+          <span>{{ apprenant.dateNaissance | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.apprenant.lieuNaissance">Lieu Naissance</span></dt>
+        <dd>
+          <span>{{ apprenant.lieuNaissance }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.apprenant.user">User</span></dt>
+        <dd>
+          <span>{{ apprenant.user?.login }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.apprenant.groupe">Groupe</span></dt>
+        <dd>
+          <div *ngIf="apprenant.groupe">
+            <a [routerLink]="['/groupe', apprenant.groupe?.id, 'view']">{{ apprenant.groupe?.nomGroupe }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.apprenant.parent">Parent</span></dt>
+        <dd>
+          <div *ngIf="apprenant.parent">
+            <a [routerLink]="['/parent', apprenant.parent?.id, 'view']">{{ apprenant.parent?.nom }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/apprenant', apprenant.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

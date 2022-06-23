@@ -1,0 +1,50 @@
+{
+  "applications": ["entMefpaiv2"],
+  "changelogDate": "20220623154212",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "filiere",
+  "fields": [
+    {
+      "fieldName": "nomFiliere",
+      "fieldType": "NomFiliere",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "Agriculture,Peche,Elevage,Mine_carrieres,Artisanat,Batimat_Travaux_Publiques,Mecanique,Menuiserie_Bois,Habillement,Agroalimentaire,Electrotechnique_Electrique_Energetique,Hydraulique,Structure_Metallique,Structure_Plastique,Beaute_Esthetique,Developpement_Territorial,Droit,Economie_Gestion_Commerce_Logistique,Insdustrie_culturelle_et_creative,Informatique_et_numerique,Restauration_et_hotellorie,Sante_biologie_chimie,Sport,Tourisme,Environnement,Autres"
+    },
+    {
+      "fieldName": "niveauQualif",
+      "fieldType": "Qualification",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "CPS,CAP,BEP,BT,METP,BTS,CQP,BTI,TitreProf,CAEP,TS,Autres"
+    },
+    {
+      "fieldName": "autreFiliere",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "autreQualif",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Filiere",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "classe",
+      "otherEntityRelationshipName": "filiere",
+      "relationshipName": "classe",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "nomEtab",
+      "otherEntityName": "etablissement",
+      "otherEntityRelationshipName": "filiere",
+      "relationshipName": "etablissement",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

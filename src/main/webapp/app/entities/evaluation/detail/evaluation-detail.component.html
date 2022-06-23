@@ -1,0 +1,72 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="evaluation">
+      <h2 data-cy="evaluationDetailsHeading"><span jhiTranslate="entMefpaiv2App.evaluation.detail.title">Evaluation</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ evaluation.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.evaluation.nomEvalu">Nom Evalu</span></dt>
+        <dd>
+          <span>{{ evaluation.nomEvalu }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.evaluation.typeEvalu">Type Evalu</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'entMefpaiv2App.TypeEvalu.' + evaluation.typeEvalu }}">{{ evaluation.typeEvalu }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.evaluation.dateEva">Date Eva</span></dt>
+        <dd>
+          <span>{{ evaluation.dateEva | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.evaluation.heureDebEva">Heure Deb Eva</span></dt>
+        <dd>
+          <span>{{ evaluation.heureDebEva | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.evaluation.heureFinEva">Heure Fin Eva</span></dt>
+        <dd>
+          <span>{{ evaluation.heureFinEva | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.evaluation.matiere">Matiere</span></dt>
+        <dd>
+          <div *ngIf="evaluation.matiere">
+            <a [routerLink]="['/matiere', evaluation.matiere?.id, 'view']">{{ evaluation.matiere?.intituleMatiere }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.evaluation.groupe">Groupe</span></dt>
+        <dd>
+          <div *ngIf="evaluation.groupe">
+            <a [routerLink]="['/groupe', evaluation.groupe?.id, 'view']">{{ evaluation.groupe?.nomGroupe }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.evaluation.professeur">Professeur</span></dt>
+        <dd>
+          <div *ngIf="evaluation.professeur">
+            <a [routerLink]="['/professeur', evaluation.professeur?.id, 'view']">{{ evaluation.professeur?.nom }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.evaluation.salle">Salle</span></dt>
+        <dd>
+          <div *ngIf="evaluation.salle">
+            <a [routerLink]="['/salle', evaluation.salle?.id, 'view']">{{ evaluation.salle?.libelleSalle }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/evaluation', evaluation.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,76 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="classe">
+      <h2 data-cy="classeDetailsHeading"><span jhiTranslate="entMefpaiv2App.classe.detail.title">Classe</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ classe.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.classe.titre">Titre</span></dt>
+        <dd>
+          <span>{{ classe.titre }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.classe.niveauEtude">Niveau Etude</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'entMefpaiv2App.NiveauEtude.' + classe.niveauEtude }}">{{ classe.niveauEtude }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.classe.autreNiveau">Autre Niveau</span></dt>
+        <dd>
+          <span>{{ classe.autreNiveau }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.classe.filiere">Filiere</span></dt>
+        <dd>
+          <div *ngIf="classe.filiere">
+            <a [routerLink]="['/filiere', classe.filiere?.id, 'view']">{{ classe.filiere?.nomFiliere }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.classe.serie">Serie</span></dt>
+        <dd>
+          <div *ngIf="classe.serie">
+            <a [routerLink]="['/serie', classe.serie?.id, 'view']">{{ classe.serie?.nomSerie }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.classe.proviseur">Proviseur</span></dt>
+        <dd>
+          <div *ngIf="classe.proviseur">
+            <a [routerLink]="['/proviseur', classe.proviseur?.id, 'view']">{{ classe.proviseur?.nom }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.classe.directeur">Directeur</span></dt>
+        <dd>
+          <div *ngIf="classe.directeur">
+            <a [routerLink]="['/directeur', classe.directeur?.id, 'view']">{{ classe.directeur?.nom }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.classe.surveillant">Surveillant</span></dt>
+        <dd>
+          <div *ngIf="classe.surveillant">
+            <a [routerLink]="['/surveillant', classe.surveillant?.id, 'view']">{{ classe.surveillant?.nom }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.classe.professeur">Professeur</span></dt>
+        <dd>
+          <div *ngIf="classe.professeur">
+            <a [routerLink]="['/professeur', classe.professeur?.id, 'view']">{{ classe.professeur?.nom }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/classe', classe.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

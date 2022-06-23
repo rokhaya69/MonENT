@@ -1,0 +1,30 @@
+{
+  "entMefpaiv2App": {
+    "programme": {
+      "home": {
+        "title": "Programmes",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Programme",
+        "createOrEditLabel": "Créer ou éditer un Programme",
+        "notFound": "Aucun Programme trouvé"
+      },
+      "created": "Un nouveau Programme a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Programme avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Programme avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Programme {{ id }} ?"
+      },
+      "detail": {
+        "title": "Programme"
+      },
+      "id": "ID",
+      "nomProgram": "Nom Program",
+      "contenuProgram": "Contenu Program",
+      "annee": "Annee",
+      "filiere": "Filiere",
+      "serie": "Serie",
+      "syllabus": "Syllabus",
+      "matiere": "Matiere"
+    }
+  }
+}

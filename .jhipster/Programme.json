@@ -1,0 +1,60 @@
+{
+  "applications": ["entMefpaiv2"],
+  "changelogDate": "20220623154412",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "programme",
+  "fields": [
+    {
+      "fieldName": "nomProgram",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "contenuProgram",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "any"
+    },
+    {
+      "fieldName": "annee",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Programme",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "nomFiliere",
+      "otherEntityName": "filiere",
+      "otherEntityRelationshipName": "programme",
+      "ownerSide": true,
+      "relationshipName": "filiere",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityField": "nomSerie",
+      "otherEntityName": "serie",
+      "otherEntityRelationshipName": "programme",
+      "ownerSide": true,
+      "relationshipName": "serie",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "syllabus",
+      "otherEntityRelationshipName": "programme",
+      "relationshipName": "syllabus",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "matiere",
+      "otherEntityRelationshipName": "programme",
+      "relationshipName": "matiere",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "no"
+}

@@ -1,0 +1,26 @@
+{
+  "entMefpaiv2App": {
+    "salle": {
+      "home": {
+        "title": "Salles",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Salle",
+        "createOrEditLabel": "Create or edit a Salle",
+        "notFound": "No Salles found"
+      },
+      "created": "A new Salle is created with identifier {{ param }}",
+      "updated": "A Salle is updated with identifier {{ param }}",
+      "deleted": "A Salle is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Salle {{ id }}?"
+      },
+      "detail": {
+        "title": "Salle"
+      },
+      "id": "ID",
+      "libelleSalle": "Libelle Salle",
+      "seance": "Seance",
+      "evaluation": "Evaluation"
+    }
+  }
+}

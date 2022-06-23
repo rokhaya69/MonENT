@@ -1,0 +1,37 @@
+{
+  "entMefpaiv2App": {
+    "apprenant": {
+      "home": {
+        "title": "Apprenants",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Apprenant",
+        "createOrEditLabel": "Create or edit a Apprenant",
+        "notFound": "No Apprenants found"
+      },
+      "created": "A new Apprenant is created with identifier {{ param }}",
+      "updated": "A Apprenant is updated with identifier {{ param }}",
+      "deleted": "A Apprenant is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Apprenant {{ id }}?"
+      },
+      "detail": {
+        "title": "Apprenant"
+      },
+      "id": "ID",
+      "nom": "Nom",
+      "prenom": "Prenom",
+      "email": "Email",
+      "adresse": "Adresse",
+      "telephone": "Telephone",
+      "sexe": "Sexe",
+      "photo": "Photo",
+      "dateNaissance": "Date Naissance",
+      "lieuNaissance": "Lieu Naissance",
+      "user": "User",
+      "absence": "Absence",
+      "ressource": "Ressource",
+      "groupe": "Groupe",
+      "parent": "Parent"
+    }
+  }
+}

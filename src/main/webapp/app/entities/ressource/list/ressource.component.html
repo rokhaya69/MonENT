@@ -1,0 +1,174 @@
+<div>
+  <h2 id="page-heading" data-cy="RessourceHeading">
+    <span jhiTranslate="entMefpaiv2App.ressource.home.title">Ressources</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="entMefpaiv2App.ressource.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-ressource"
+        [routerLink]="['/ressource/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="entMefpaiv2App.ressource.home.createLabel"> Create a new Ressource </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="ressources?.length === 0">
+    <span jhiTranslate="entMefpaiv2App.ressource.home.notFound">No ressources found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="ressources && ressources.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="libelRessource">
+            <span jhiTranslate="entMefpaiv2App.ressource.libelRessource">Libel Ressource</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="typeRessource">
+            <span jhiTranslate="entMefpaiv2App.ressource.typeRessource">Type Ressource</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="lienRessource">
+            <span jhiTranslate="entMefpaiv2App.ressource.lienRessource">Lien Ressource</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="dateMise">
+            <span jhiTranslate="entMefpaiv2App.ressource.dateMise">Date Mise</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="apprenant.nom">
+            <span jhiTranslate="entMefpaiv2App.ressource.apprenant">Apprenant</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="groupe.nomGroupe">
+            <span jhiTranslate="entMefpaiv2App.ressource.groupe">Groupe</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="cours.libelleCours">
+            <span jhiTranslate="entMefpaiv2App.ressource.cours">Cours</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="persoAdmin.nom">
+            <span jhiTranslate="entMefpaiv2App.ressource.persoAdmin">Perso Admin</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="proviseur.nom">
+            <span jhiTranslate="entMefpaiv2App.ressource.proviseur">Proviseur</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="directeur.nom">
+            <span jhiTranslate="entMefpaiv2App.ressource.directeur">Directeur</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="inspecteur.nom">
+            <span jhiTranslate="entMefpaiv2App.ressource.inspecteur">Inspecteur</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ressource of ressources; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/ressource', ressource.id, 'view']">{{ ressource.id }}</a>
+          </td>
+          <td>{{ ressource.libelRessource }}</td>
+          <td jhiTranslate="{{ 'entMefpaiv2App.TypeRessource.' + ressource.typeRessource }}">{{ ressource.typeRessource }}</td>
+          <td>
+            <a
+              *ngIf="ressource.lienRessource"
+              (click)="openFile(ressource.lienRessource, ressource.lienRessourceContentType)"
+              jhiTranslate="entity.action.open"
+              >open</a
+            >
+            <span *ngIf="ressource.lienRessource">{{ ressource.lienRessourceContentType }}, {{ byteSize(ressource.lienRessource) }}</span>
+          </td>
+          <td>{{ ressource.dateMise | formatMediumDatetime }}</td>
+          <td>
+            <div *ngIf="ressource.apprenant">
+              <a [routerLink]="['/apprenant', ressource.apprenant?.id, 'view']">{{ ressource.apprenant?.nom }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="ressource.groupe">
+              <a [routerLink]="['/groupe', ressource.groupe?.id, 'view']">{{ ressource.groupe?.nomGroupe }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="ressource.cours">
+              <a [routerLink]="['/cours', ressource.cours?.id, 'view']">{{ ressource.cours?.libelleCours }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="ressource.persoAdmin">
+              <a [routerLink]="['/surveillant', ressource.persoAdmin?.id, 'view']">{{ ressource.persoAdmin?.nom }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="ressource.proviseur">
+              <a [routerLink]="['/proviseur', ressource.proviseur?.id, 'view']">{{ ressource.proviseur?.nom }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="ressource.directeur">
+              <a [routerLink]="['/directeur', ressource.directeur?.id, 'view']">{{ ressource.directeur?.nom }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="ressource.inspecteur">
+              <a [routerLink]="['/inspecteur', ressource.inspecteur?.id, 'view']">{{ ressource.inspecteur?.nom }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/ressource', ressource.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/ressource', ressource.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(ressource)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="ressources && ressources.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

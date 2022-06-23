@@ -1,0 +1,73 @@
+{
+  "applications": ["entMefpaiv2"],
+  "changelogDate": "20220623152912",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "seance",
+  "fields": [
+    {
+      "fieldName": "jourSeance",
+      "fieldType": "Jour",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "Lundi,Mardi,Mercredi,Jeudi,Vendredi,Samedi,Dimanche"
+    },
+    {
+      "fieldName": "dateSeance",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "dateDebut",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "dateFin",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Seance",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "nomContenu",
+      "otherEntityName": "contenu",
+      "otherEntityRelationshipName": "seance",
+      "ownerSide": true,
+      "relationshipName": "contenu",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityField": "libelleCours",
+      "otherEntityName": "cours",
+      "otherEntityRelationshipName": "seance",
+      "relationshipName": "cours",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "libelleSalle",
+      "otherEntityName": "salle",
+      "otherEntityRelationshipName": "seance",
+      "relationshipName": "salle",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "nomGroupe",
+      "otherEntityName": "groupe",
+      "otherEntityRelationshipName": "seance",
+      "relationshipName": "groupe",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "absence",
+      "otherEntityRelationshipName": "seance",
+      "relationshipName": "absence",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "no"
+}

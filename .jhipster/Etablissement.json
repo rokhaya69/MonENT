@@ -1,0 +1,102 @@
+{
+  "applications": ["entMefpaiv2"],
+  "changelogDate": "20220623154112",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "etablissement",
+  "fields": [
+    {
+      "fieldName": "nomEtab",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "typeEtab",
+      "fieldType": "TypeEtab",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "LyceeTech,CentreFP"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"],
+      "options": {
+        "email": true,
+        "unique": true
+      }
+    },
+    {
+      "fieldName": "telephone",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"],
+      "options": {
+        "unique": true
+      }
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Etablissement",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "nom",
+      "otherEntityName": "proviseur",
+      "otherEntityRelationshipName": "etablissement",
+      "ownerSide": true,
+      "relationshipName": "proviseur",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityField": "nom",
+      "otherEntityName": "directeur",
+      "otherEntityRelationshipName": "etablissement",
+      "ownerSide": true,
+      "relationshipName": "directeur",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityField": "nomCom",
+      "otherEntityName": "commune",
+      "otherEntityRelationshipName": "etablissement",
+      "ownerSide": true,
+      "relationshipName": "commune",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "professeur",
+      "otherEntityRelationshipName": "etablissement",
+      "relationshipName": "professeur",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "filiere",
+      "otherEntityRelationshipName": "etablissement",
+      "relationshipName": "filiere",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "serie",
+      "otherEntityRelationshipName": "etablissement",
+      "relationshipName": "serie",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "libelRessource",
+      "otherEntityName": "ressource",
+      "otherEntityRelationshipName": "etablissement",
+      "ownerSide": true,
+      "relationshipName": "ressource",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityField": "nomInspec",
+      "otherEntityName": "inspection",
+      "otherEntityRelationshipName": "etablissement",
+      "relationshipName": "inspection",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

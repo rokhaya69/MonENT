@@ -1,0 +1,55 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="programme">
+      <h2 data-cy="programmeDetailsHeading"><span jhiTranslate="entMefpaiv2App.programme.detail.title">Programme</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ programme.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.programme.nomProgram">Nom Program</span></dt>
+        <dd>
+          <span>{{ programme.nomProgram }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.programme.contenuProgram">Contenu Program</span></dt>
+        <dd>
+          <div *ngIf="programme.contenuProgram">
+            <a (click)="openFile(programme.contenuProgram, programme.contenuProgramContentType)" jhiTranslate="entity.action.open">open</a>
+            {{ programme.contenuProgramContentType }}, {{ byteSize(programme.contenuProgram) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.programme.annee">Annee</span></dt>
+        <dd>
+          <span>{{ programme.annee | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.programme.filiere">Filiere</span></dt>
+        <dd>
+          <div *ngIf="programme.filiere">
+            <a [routerLink]="['/filiere', programme.filiere?.id, 'view']">{{ programme.filiere?.nomFiliere }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.programme.serie">Serie</span></dt>
+        <dd>
+          <div *ngIf="programme.serie">
+            <a [routerLink]="['/serie', programme.serie?.id, 'view']">{{ programme.serie?.nomSerie }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/programme', programme.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,83 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-note-heading" data-cy="NoteCreateUpdateHeading" jhiTranslate="entMefpaiv2App.note.home.createOrEditLabel">
+        Create or edit a Note
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="entMefpaiv2App.note.uneNote" for="field_uneNote">Une Note</label>
+          <input type="number" class="form-control" name="uneNote" id="field_uneNote" data-cy="uneNote" formControlName="uneNote" />
+          <div *ngIf="editForm.get('uneNote')!.invalid && (editForm.get('uneNote')!.dirty || editForm.get('uneNote')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('uneNote')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('uneNote')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="entMefpaiv2App.note.apprenant" for="field_apprenant">Apprenant</label>
+          <select class="form-control" id="field_apprenant" data-cy="apprenant" name="apprenant" formControlName="apprenant">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="apprenantOption.id === editForm.get('apprenant')!.value?.id ? editForm.get('apprenant')!.value : apprenantOption"
+              *ngFor="let apprenantOption of apprenantsCollection; trackBy: trackApprenantById"
+            >
+              {{ apprenantOption.nom }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="entMefpaiv2App.note.evaluation" for="field_evaluation">Evaluation</label>
+          <select class="form-control" id="field_evaluation" data-cy="evaluation" name="evaluation" formControlName="evaluation">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                evaluationOption.id === editForm.get('evaluation')!.value?.id ? editForm.get('evaluation')!.value : evaluationOption
+              "
+              *ngFor="let evaluationOption of evaluationsSharedCollection; trackBy: trackEvaluationById"
+            >
+              {{ evaluationOption.nomEvalu }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

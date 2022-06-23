@@ -1,0 +1,65 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-region-heading" data-cy="RegionCreateUpdateHeading" jhiTranslate="entMefpaiv2App.region.home.createOrEditLabel">
+        Create or edit a Region
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="entMefpaiv2App.region.nomRegion" for="field_nomRegion">Nom Region</label>
+          <select class="form-control" name="nomRegion" formControlName="nomRegion" id="field_nomRegion" data-cy="nomRegion">
+            <option [ngValue]="null">{{ 'entMefpaiv2App.NomRegion.null' | translate }}</option>
+            <option *ngFor="let nomRegion of nomRegionValues" [value]="nomRegion">
+              {{ 'entMefpaiv2App.NomRegion.' + nomRegion | translate }}
+            </option>
+          </select>
+          <div *ngIf="editForm.get('nomRegion')!.invalid && (editForm.get('nomRegion')!.dirty || editForm.get('nomRegion')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('nomRegion')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="entMefpaiv2App.region.autreRegion" for="field_autreRegion">Autre Region</label>
+          <input
+            type="text"
+            class="form-control"
+            name="autreRegion"
+            id="field_autreRegion"
+            data-cy="autreRegion"
+            formControlName="autreRegion"
+          />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

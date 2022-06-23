@@ -1,0 +1,213 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-evaluation-heading"
+        data-cy="EvaluationCreateUpdateHeading"
+        jhiTranslate="entMefpaiv2App.evaluation.home.createOrEditLabel"
+      >
+        Create or edit a Evaluation
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="entMefpaiv2App.evaluation.nomEvalu" for="field_nomEvalu">Nom Evalu</label>
+          <input type="text" class="form-control" name="nomEvalu" id="field_nomEvalu" data-cy="nomEvalu" formControlName="nomEvalu" />
+          <div *ngIf="editForm.get('nomEvalu')!.invalid && (editForm.get('nomEvalu')!.dirty || editForm.get('nomEvalu')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('nomEvalu')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="entMefpaiv2App.evaluation.typeEvalu" for="field_typeEvalu">Type Evalu</label>
+          <select class="form-control" name="typeEvalu" formControlName="typeEvalu" id="field_typeEvalu" data-cy="typeEvalu">
+            <option [ngValue]="null">{{ 'entMefpaiv2App.TypeEvalu.null' | translate }}</option>
+            <option *ngFor="let typeEvalu of typeEvaluValues" [value]="typeEvalu">
+              {{ 'entMefpaiv2App.TypeEvalu.' + typeEvalu | translate }}
+            </option>
+          </select>
+          <div *ngIf="editForm.get('typeEvalu')!.invalid && (editForm.get('typeEvalu')!.dirty || editForm.get('typeEvalu')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('typeEvalu')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="entMefpaiv2App.evaluation.dateEva" for="field_dateEva">Date Eva</label>
+          <div class="input-group">
+            <input
+              id="field_dateEva"
+              data-cy="dateEva"
+              type="text"
+              class="form-control"
+              name="dateEva"
+              ngbDatepicker
+              #dateEvaDp="ngbDatepicker"
+              formControlName="dateEva"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateEvaDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+          <div *ngIf="editForm.get('dateEva')!.invalid && (editForm.get('dateEva')!.dirty || editForm.get('dateEva')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('dateEva')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="entMefpaiv2App.evaluation.heureDebEva" for="field_heureDebEva">Heure Deb Eva</label>
+          <div class="d-flex">
+            <input
+              id="field_heureDebEva"
+              data-cy="heureDebEva"
+              type="datetime-local"
+              class="form-control"
+              name="heureDebEva"
+              formControlName="heureDebEva"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          <div *ngIf="editForm.get('heureDebEva')!.invalid && (editForm.get('heureDebEva')!.dirty || editForm.get('heureDebEva')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('heureDebEva')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('heureDebEva')?.errors?.ZonedDateTimelocal"
+              jhiTranslate="entity.validation.ZonedDateTimelocal"
+            >
+              This field should be a date and time.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="entMefpaiv2App.evaluation.heureFinEva" for="field_heureFinEva">Heure Fin Eva</label>
+          <div class="d-flex">
+            <input
+              id="field_heureFinEva"
+              data-cy="heureFinEva"
+              type="datetime-local"
+              class="form-control"
+              name="heureFinEva"
+              formControlName="heureFinEva"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          <div *ngIf="editForm.get('heureFinEva')!.invalid && (editForm.get('heureFinEva')!.dirty || editForm.get('heureFinEva')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('heureFinEva')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('heureFinEva')?.errors?.ZonedDateTimelocal"
+              jhiTranslate="entity.validation.ZonedDateTimelocal"
+            >
+              This field should be a date and time.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="entMefpaiv2App.evaluation.matiere" for="field_matiere">Matiere</label>
+          <select class="form-control" id="field_matiere" data-cy="matiere" name="matiere" formControlName="matiere">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="matiereOption.id === editForm.get('matiere')!.value?.id ? editForm.get('matiere')!.value : matiereOption"
+              *ngFor="let matiereOption of matieresSharedCollection; trackBy: trackMatiereById"
+            >
+              {{ matiereOption.intituleMatiere }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="entMefpaiv2App.evaluation.groupe" for="field_groupe">Groupe</label>
+          <select class="form-control" id="field_groupe" data-cy="groupe" name="groupe" formControlName="groupe">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="groupeOption.id === editForm.get('groupe')!.value?.id ? editForm.get('groupe')!.value : groupeOption"
+              *ngFor="let groupeOption of groupesSharedCollection; trackBy: trackGroupeById"
+            >
+              {{ groupeOption.nomGroupe }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="entMefpaiv2App.evaluation.professeur" for="field_professeur">Professeur</label>
+          <select class="form-control" id="field_professeur" data-cy="professeur" name="professeur" formControlName="professeur">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                professeurOption.id === editForm.get('professeur')!.value?.id ? editForm.get('professeur')!.value : professeurOption
+              "
+              *ngFor="let professeurOption of professeursSharedCollection; trackBy: trackProfesseurById"
+            >
+              {{ professeurOption.nom }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="entMefpaiv2App.evaluation.salle" for="field_salle">Salle</label>
+          <select class="form-control" id="field_salle" data-cy="salle" name="salle" formControlName="salle">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="salleOption.id === editForm.get('salle')!.value?.id ? editForm.get('salle')!.value : salleOption"
+              *ngFor="let salleOption of sallesSharedCollection; trackBy: trackSalleById"
+            >
+              {{ salleOption.libelleSalle }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

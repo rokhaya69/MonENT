@@ -1,0 +1,30 @@
+{
+  "entMefpaiv2App": {
+    "inspection": {
+      "home": {
+        "title": "Inspections",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Inspection",
+        "createOrEditLabel": "Créer ou éditer un Inspection",
+        "notFound": "Aucun Inspection trouvé"
+      },
+      "created": "Un nouveau Inspection a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Inspection avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Inspection avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Inspection {{ id }} ?"
+      },
+      "detail": {
+        "title": "Inspection"
+      },
+      "id": "ID",
+      "nomInspec": "Nom Inspec",
+      "typeInspec": "Type Inspec",
+      "email": "Email",
+      "telephone": "Telephone",
+      "commune": "Commune",
+      "inspecteur": "Inspecteur",
+      "etablissement": "Etablissement"
+    }
+  }
+}

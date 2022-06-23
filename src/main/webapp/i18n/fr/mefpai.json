@@ -1,0 +1,31 @@
+{
+  "entMefpaiv2App": {
+    "mefpai": {
+      "home": {
+        "title": "Mefpais",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Mefpai",
+        "createOrEditLabel": "Créer ou éditer un Mefpai",
+        "notFound": "Aucun Mefpai trouvé"
+      },
+      "created": "Un nouveau Mefpai a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Mefpai avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Mefpai avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Mefpai {{ id }} ?"
+      },
+      "detail": {
+        "title": "Mefpai"
+      },
+      "id": "ID",
+      "nom": "Nom",
+      "prenom": "Prenom",
+      "email": "Email",
+      "adresse": "Adresse",
+      "telephone": "Telephone",
+      "sexe": "Sexe",
+      "photo": "Photo",
+      "user": "User"
+    }
+  }
+}

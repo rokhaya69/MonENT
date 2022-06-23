@@ -1,0 +1,37 @@
+{
+  "entMefpaiv2App": {
+    "professeur": {
+      "home": {
+        "title": "Professeurs",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Professeur",
+        "createOrEditLabel": "Create or edit a Professeur",
+        "notFound": "No Professeurs found"
+      },
+      "created": "A new Professeur is created with identifier {{ param }}",
+      "updated": "A Professeur is updated with identifier {{ param }}",
+      "deleted": "A Professeur is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Professeur {{ id }}?"
+      },
+      "detail": {
+        "title": "Professeur"
+      },
+      "id": "ID",
+      "nom": "Nom",
+      "prenom": "Prenom",
+      "email": "Email",
+      "adresse": "Adresse",
+      "telephone": "Telephone",
+      "sexe": "Sexe",
+      "photo": "Photo",
+      "specialite": "Specialite",
+      "niveauEnseign": "Niveau Enseign",
+      "user": "User",
+      "cours": "Cours",
+      "classe": "Classe",
+      "evaluation": "Evaluation",
+      "etablissement": "Etablissement"
+    }
+  }
+}

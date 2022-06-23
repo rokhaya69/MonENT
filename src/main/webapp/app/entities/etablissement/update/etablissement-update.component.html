@@ -1,0 +1,161 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-etablissement-heading"
+        data-cy="EtablissementCreateUpdateHeading"
+        jhiTranslate="entMefpaiv2App.etablissement.home.createOrEditLabel"
+      >
+        Create or edit a Etablissement
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="entMefpaiv2App.etablissement.nomEtab" for="field_nomEtab">Nom Etab</label>
+          <input type="text" class="form-control" name="nomEtab" id="field_nomEtab" data-cy="nomEtab" formControlName="nomEtab" />
+          <div *ngIf="editForm.get('nomEtab')!.invalid && (editForm.get('nomEtab')!.dirty || editForm.get('nomEtab')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('nomEtab')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="entMefpaiv2App.etablissement.typeEtab" for="field_typeEtab">Type Etab</label>
+          <select class="form-control" name="typeEtab" formControlName="typeEtab" id="field_typeEtab" data-cy="typeEtab">
+            <option [ngValue]="null">{{ 'entMefpaiv2App.TypeEtab.null' | translate }}</option>
+            <option *ngFor="let typeEtab of typeEtabValues" [value]="typeEtab">
+              {{ 'entMefpaiv2App.TypeEtab.' + typeEtab | translate }}
+            </option>
+          </select>
+          <div *ngIf="editForm.get('typeEtab')!.invalid && (editForm.get('typeEtab')!.dirty || editForm.get('typeEtab')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('typeEtab')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="entMefpaiv2App.etablissement.email" for="field_email">Email</label>
+          <input type="text" class="form-control" name="email" id="field_email" data-cy="email" formControlName="email" />
+          <div *ngIf="editForm.get('email')!.invalid && (editForm.get('email')!.dirty || editForm.get('email')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('email')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="entMefpaiv2App.etablissement.telephone" for="field_telephone">Telephone</label>
+          <input type="text" class="form-control" name="telephone" id="field_telephone" data-cy="telephone" formControlName="telephone" />
+          <div *ngIf="editForm.get('telephone')!.invalid && (editForm.get('telephone')!.dirty || editForm.get('telephone')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('telephone')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="entMefpaiv2App.etablissement.proviseur" for="field_proviseur">Proviseur</label>
+          <select class="form-control" id="field_proviseur" data-cy="proviseur" name="proviseur" formControlName="proviseur">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="proviseurOption.id === editForm.get('proviseur')!.value?.id ? editForm.get('proviseur')!.value : proviseurOption"
+              *ngFor="let proviseurOption of proviseursCollection; trackBy: trackProviseurById"
+            >
+              {{ proviseurOption.nom }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="entMefpaiv2App.etablissement.directeur" for="field_directeur">Directeur</label>
+          <select class="form-control" id="field_directeur" data-cy="directeur" name="directeur" formControlName="directeur">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="directeurOption.id === editForm.get('directeur')!.value?.id ? editForm.get('directeur')!.value : directeurOption"
+              *ngFor="let directeurOption of directeursCollection; trackBy: trackDirecteurById"
+            >
+              {{ directeurOption.nom }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="entMefpaiv2App.etablissement.commune" for="field_commune">Commune</label>
+          <select class="form-control" id="field_commune" data-cy="commune" name="commune" formControlName="commune">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="communeOption.id === editForm.get('commune')!.value?.id ? editForm.get('commune')!.value : communeOption"
+              *ngFor="let communeOption of communesCollection; trackBy: trackCommuneById"
+            >
+              {{ communeOption.nomCom }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label jhiTranslate="entMefpaiv2App.etablissement.ressource" for="field_ressources">Ressource</label>
+          <select class="form-control" id="field_ressources" data-cy="ressource" multiple name="ressources" formControlName="ressources">
+            <option
+              [ngValue]="getSelectedRessource(ressourceOption, editForm.get('ressources')!.value)"
+              *ngFor="let ressourceOption of ressourcesSharedCollection; trackBy: trackRessourceById"
+            >
+              {{ ressourceOption.libelRessource }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="entMefpaiv2App.etablissement.inspection" for="field_inspection">Inspection</label>
+          <select class="form-control" id="field_inspection" data-cy="inspection" name="inspection" formControlName="inspection">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                inspectionOption.id === editForm.get('inspection')!.value?.id ? editForm.get('inspection')!.value : inspectionOption
+              "
+              *ngFor="let inspectionOption of inspectionsSharedCollection; trackBy: trackInspectionById"
+            >
+              {{ inspectionOption.nomInspec }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+{
+  "entMefpaiv2App": {
+    "contenu": {
+      "home": {
+        "title": "Contenus",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Contenu",
+        "createOrEditLabel": "Create or edit a Contenu",
+        "notFound": "No Contenus found"
+      },
+      "created": "A new Contenu is created with identifier {{ param }}",
+      "updated": "A Contenu is updated with identifier {{ param }}",
+      "deleted": "A Contenu is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Contenu {{ id }}?"
+      },
+      "detail": {
+        "title": "Contenu"
+      },
+      "id": "ID",
+      "nomContenu": "Nom Contenu",
+      "contenu": "Contenu"
+    }
+  }
+}

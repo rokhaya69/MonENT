@@ -1,0 +1,76 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="surveillant">
+      <h2 data-cy="surveillantDetailsHeading"><span jhiTranslate="entMefpaiv2App.surveillant.detail.title">Surveillant</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ surveillant.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.surveillant.nom">Nom</span></dt>
+        <dd>
+          <span>{{ surveillant.nom }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.surveillant.prenom">Prenom</span></dt>
+        <dd>
+          <span>{{ surveillant.prenom }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.surveillant.email">Email</span></dt>
+        <dd>
+          <span>{{ surveillant.email }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.surveillant.adresse">Adresse</span></dt>
+        <dd>
+          <span>{{ surveillant.adresse }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.surveillant.telephone">Telephone</span></dt>
+        <dd>
+          <span>{{ surveillant.telephone }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.surveillant.sexe">Sexe</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'entMefpaiv2App.Sexe.' + surveillant.sexe }}">{{ surveillant.sexe }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.surveillant.photo">Photo</span></dt>
+        <dd>
+          <div *ngIf="surveillant.photo">
+            <a (click)="openFile(surveillant.photo, surveillant.photoContentType)">
+              <img
+                [src]="'data:' + surveillant.photoContentType + ';base64,' + surveillant.photo"
+                style="max-width: 100%"
+                alt="surveillant image"
+              />
+            </a>
+            {{ surveillant.photoContentType }}, {{ byteSize(surveillant.photo) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.surveillant.user">User</span></dt>
+        <dd>
+          <span>{{ surveillant.user?.login }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.surveillant.evaluation">Evaluation</span></dt>
+        <dd>
+          <span *ngFor="let evaluation of surveillant.evaluations; let last = last">
+            <a [routerLink]="['/evaluation', evaluation?.id, 'view']">{{ evaluation.nomEvalu }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/surveillant', surveillant.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

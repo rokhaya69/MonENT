@@ -1,0 +1,38 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="matiere">
+      <h2 data-cy="matiereDetailsHeading"><span jhiTranslate="entMefpaiv2App.matiere.detail.title">Matiere</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ matiere.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.matiere.intituleMatiere">Intitule Matiere</span></dt>
+        <dd>
+          <span>{{ matiere.intituleMatiere }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.matiere.programme">Programme</span></dt>
+        <dd>
+          <div *ngIf="matiere.programme">
+            <a [routerLink]="['/programme', matiere.programme?.id, 'view']">{{ matiere.programme?.nomProgram }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/matiere', matiere.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

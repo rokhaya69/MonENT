@@ -1,0 +1,69 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="proviseur">
+      <h2 data-cy="proviseurDetailsHeading"><span jhiTranslate="entMefpaiv2App.proviseur.detail.title">Proviseur</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ proviseur.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.proviseur.nom">Nom</span></dt>
+        <dd>
+          <span>{{ proviseur.nom }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.proviseur.prenom">Prenom</span></dt>
+        <dd>
+          <span>{{ proviseur.prenom }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.proviseur.email">Email</span></dt>
+        <dd>
+          <span>{{ proviseur.email }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.proviseur.adresse">Adresse</span></dt>
+        <dd>
+          <span>{{ proviseur.adresse }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.proviseur.telephone">Telephone</span></dt>
+        <dd>
+          <span>{{ proviseur.telephone }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.proviseur.sexe">Sexe</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'entMefpaiv2App.Sexe.' + proviseur.sexe }}">{{ proviseur.sexe }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.proviseur.photo">Photo</span></dt>
+        <dd>
+          <div *ngIf="proviseur.photo">
+            <a (click)="openFile(proviseur.photo, proviseur.photoContentType)">
+              <img
+                [src]="'data:' + proviseur.photoContentType + ';base64,' + proviseur.photo"
+                style="max-width: 100%"
+                alt="proviseur image"
+              />
+            </a>
+            {{ proviseur.photoContentType }}, {{ byteSize(proviseur.photo) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.proviseur.user">User</span></dt>
+        <dd>
+          <span>{{ proviseur.user?.login }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/proviseur', proviseur.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

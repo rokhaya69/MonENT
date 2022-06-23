@@ -1,0 +1,62 @@
+{
+  "applications": ["entMefpaiv2"],
+  "changelogDate": "20220623152412",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "cours",
+  "fields": [
+    {
+      "fieldName": "libelleCours",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "unique"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Cours",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "seance",
+      "otherEntityRelationshipName": "cours",
+      "relationshipName": "seance",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "ressource",
+      "otherEntityRelationshipName": "cours",
+      "relationshipName": "ressource",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "intituleMatiere",
+      "otherEntityName": "matiere",
+      "otherEntityRelationshipName": "cours",
+      "relationshipName": "matiere",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "titre",
+      "otherEntityName": "classe",
+      "otherEntityRelationshipName": "cours",
+      "relationshipName": "classe",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "nom",
+      "otherEntityName": "professeur",
+      "otherEntityRelationshipName": "cours",
+      "relationshipName": "professeur",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "nomSyllabus",
+      "otherEntityName": "syllabus",
+      "otherEntityRelationshipName": "cours",
+      "relationshipName": "syllabus",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

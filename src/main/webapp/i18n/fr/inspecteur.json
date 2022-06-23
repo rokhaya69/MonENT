@@ -1,0 +1,32 @@
+{
+  "entMefpaiv2App": {
+    "inspecteur": {
+      "home": {
+        "title": "Inspecteurs",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Inspecteur",
+        "createOrEditLabel": "Créer ou éditer un Inspecteur",
+        "notFound": "Aucun Inspecteur trouvé"
+      },
+      "created": "Un nouveau Inspecteur a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Inspecteur avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Inspecteur avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Inspecteur {{ id }} ?"
+      },
+      "detail": {
+        "title": "Inspecteur"
+      },
+      "id": "ID",
+      "nom": "Nom",
+      "prenom": "Prenom",
+      "email": "Email",
+      "adresse": "Adresse",
+      "telephone": "Telephone",
+      "sexe": "Sexe",
+      "photo": "Photo",
+      "user": "User",
+      "ressource": "Ressource"
+    }
+  }
+}

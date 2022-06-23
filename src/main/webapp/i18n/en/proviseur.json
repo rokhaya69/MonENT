@@ -1,0 +1,33 @@
+{
+  "entMefpaiv2App": {
+    "proviseur": {
+      "home": {
+        "title": "Proviseurs",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Proviseur",
+        "createOrEditLabel": "Create or edit a Proviseur",
+        "notFound": "No Proviseurs found"
+      },
+      "created": "A new Proviseur is created with identifier {{ param }}",
+      "updated": "A Proviseur is updated with identifier {{ param }}",
+      "deleted": "A Proviseur is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Proviseur {{ id }}?"
+      },
+      "detail": {
+        "title": "Proviseur"
+      },
+      "id": "ID",
+      "nom": "Nom",
+      "prenom": "Prenom",
+      "email": "Email",
+      "adresse": "Adresse",
+      "telephone": "Telephone",
+      "sexe": "Sexe",
+      "photo": "Photo",
+      "user": "User",
+      "ressource": "Ressource",
+      "classe": "Classe"
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "entMefpaiv2App": {
+    "syllabus": {
+      "home": {
+        "title": "Syllabi",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Syllabus",
+        "createOrEditLabel": "Créer ou éditer un Syllabus",
+        "notFound": "Aucun Syllabus trouvé"
+      },
+      "created": "Un nouveau Syllabus a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Syllabus avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Syllabus avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Syllabus {{ id }} ?"
+      },
+      "detail": {
+        "title": "Syllabus"
+      },
+      "id": "ID",
+      "nomSyllabus": "Nom Syllabus",
+      "syllabus": "Syllabus",
+      "cours": "Cours",
+      "programme": "Programme",
+      "matiere": "Matiere"
+    }
+  }
+}

@@ -1,0 +1,121 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-filiere-heading" data-cy="FiliereCreateUpdateHeading" jhiTranslate="entMefpaiv2App.filiere.home.createOrEditLabel">
+        Create or edit a Filiere
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="entMefpaiv2App.filiere.nomFiliere" for="field_nomFiliere">Nom Filiere</label>
+          <select class="form-control" name="nomFiliere" formControlName="nomFiliere" id="field_nomFiliere" data-cy="nomFiliere">
+            <option [ngValue]="null">{{ 'entMefpaiv2App.NomFiliere.null' | translate }}</option>
+            <option *ngFor="let nomFiliere of nomFiliereValues" [value]="nomFiliere">
+              {{ 'entMefpaiv2App.NomFiliere.' + nomFiliere | translate }}
+            </option>
+          </select>
+          <div *ngIf="editForm.get('nomFiliere')!.invalid && (editForm.get('nomFiliere')!.dirty || editForm.get('nomFiliere')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('nomFiliere')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="entMefpaiv2App.filiere.niveauQualif" for="field_niveauQualif">Niveau Qualif</label>
+          <select class="form-control" name="niveauQualif" formControlName="niveauQualif" id="field_niveauQualif" data-cy="niveauQualif">
+            <option [ngValue]="null">{{ 'entMefpaiv2App.Qualification.null' | translate }}</option>
+            <option *ngFor="let qualification of qualificationValues" [value]="qualification">
+              {{ 'entMefpaiv2App.Qualification.' + qualification | translate }}
+            </option>
+          </select>
+          <div
+            *ngIf="editForm.get('niveauQualif')!.invalid && (editForm.get('niveauQualif')!.dirty || editForm.get('niveauQualif')!.touched)"
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('niveauQualif')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="entMefpaiv2App.filiere.autreFiliere" for="field_autreFiliere">Autre Filiere</label>
+          <input
+            type="text"
+            class="form-control"
+            name="autreFiliere"
+            id="field_autreFiliere"
+            data-cy="autreFiliere"
+            formControlName="autreFiliere"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="entMefpaiv2App.filiere.autreQualif" for="field_autreQualif">Autre Qualif</label>
+          <input
+            type="text"
+            class="form-control"
+            name="autreQualif"
+            id="field_autreQualif"
+            data-cy="autreQualif"
+            formControlName="autreQualif"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="entMefpaiv2App.filiere.etablissement" for="field_etablissement">Etablissement</label>
+          <select
+            class="form-control"
+            id="field_etablissement"
+            data-cy="etablissement"
+            name="etablissement"
+            formControlName="etablissement"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                etablissementOption.id === editForm.get('etablissement')!.value?.id
+                  ? editForm.get('etablissement')!.value
+                  : etablissementOption
+              "
+              *ngFor="let etablissementOption of etablissementsSharedCollection; trackBy: trackEtablissementById"
+            >
+              {{ etablissementOption.nomEtab }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

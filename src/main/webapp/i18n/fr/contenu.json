@@ -1,0 +1,25 @@
+{
+  "entMefpaiv2App": {
+    "contenu": {
+      "home": {
+        "title": "Contenus",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Contenu",
+        "createOrEditLabel": "Créer ou éditer un Contenu",
+        "notFound": "Aucun Contenu trouvé"
+      },
+      "created": "Un nouveau Contenu a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Contenu avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Contenu avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Contenu {{ id }} ?"
+      },
+      "detail": {
+        "title": "Contenu"
+      },
+      "id": "ID",
+      "nomContenu": "Nom Contenu",
+      "contenu": "Contenu"
+    }
+  }
+}

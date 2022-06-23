@@ -1,0 +1,39 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="contenu">
+      <h2 data-cy="contenuDetailsHeading"><span jhiTranslate="entMefpaiv2App.contenu.detail.title">Contenu</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ contenu.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.contenu.nomContenu">Nom Contenu</span></dt>
+        <dd>
+          <span>{{ contenu.nomContenu }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.contenu.contenu">Contenu</span></dt>
+        <dd>
+          <div *ngIf="contenu.contenu">
+            <a (click)="openFile(contenu.contenu, contenu.contenuContentType)" jhiTranslate="entity.action.open">open</a>
+            {{ contenu.contenuContentType }}, {{ byteSize(contenu.contenu) }}
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/contenu', contenu.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

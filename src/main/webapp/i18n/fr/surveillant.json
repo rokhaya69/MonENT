@@ -1,0 +1,34 @@
+{
+  "entMefpaiv2App": {
+    "surveillant": {
+      "home": {
+        "title": "Surveillants",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Surveillant",
+        "createOrEditLabel": "Créer ou éditer un Surveillant",
+        "notFound": "Aucun Surveillant trouvé"
+      },
+      "created": "Un nouveau Surveillant a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Surveillant avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Surveillant avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Surveillant {{ id }} ?"
+      },
+      "detail": {
+        "title": "Surveillant"
+      },
+      "id": "ID",
+      "nom": "Nom",
+      "prenom": "Prenom",
+      "email": "Email",
+      "adresse": "Adresse",
+      "telephone": "Telephone",
+      "sexe": "Sexe",
+      "photo": "Photo",
+      "user": "User",
+      "ressource": "Ressource",
+      "classe": "Classe",
+      "evaluation": "Evaluation"
+    }
+  }
+}

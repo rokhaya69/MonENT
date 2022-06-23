@@ -1,0 +1,157 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-classe-heading" data-cy="ClasseCreateUpdateHeading" jhiTranslate="entMefpaiv2App.classe.home.createOrEditLabel">
+        Create or edit a Classe
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="entMefpaiv2App.classe.titre" for="field_titre">Titre</label>
+          <input type="text" class="form-control" name="titre" id="field_titre" data-cy="titre" formControlName="titre" />
+          <div *ngIf="editForm.get('titre')!.invalid && (editForm.get('titre')!.dirty || editForm.get('titre')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('titre')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="entMefpaiv2App.classe.niveauEtude" for="field_niveauEtude">Niveau Etude</label>
+          <select class="form-control" name="niveauEtude" formControlName="niveauEtude" id="field_niveauEtude" data-cy="niveauEtude">
+            <option [ngValue]="null">{{ 'entMefpaiv2App.NiveauEtude.null' | translate }}</option>
+            <option *ngFor="let niveauEtude of niveauEtudeValues" [value]="niveauEtude">
+              {{ 'entMefpaiv2App.NiveauEtude.' + niveauEtude | translate }}
+            </option>
+          </select>
+          <div *ngIf="editForm.get('niveauEtude')!.invalid && (editForm.get('niveauEtude')!.dirty || editForm.get('niveauEtude')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('niveauEtude')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="entMefpaiv2App.classe.autreNiveau" for="field_autreNiveau">Autre Niveau</label>
+          <input
+            type="text"
+            class="form-control"
+            name="autreNiveau"
+            id="field_autreNiveau"
+            data-cy="autreNiveau"
+            formControlName="autreNiveau"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="entMefpaiv2App.classe.filiere" for="field_filiere">Filiere</label>
+          <select class="form-control" id="field_filiere" data-cy="filiere" name="filiere" formControlName="filiere">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="filiereOption.id === editForm.get('filiere')!.value?.id ? editForm.get('filiere')!.value : filiereOption"
+              *ngFor="let filiereOption of filieresSharedCollection; trackBy: trackFiliereById"
+            >
+              {{ filiereOption.nomFiliere }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="entMefpaiv2App.classe.serie" for="field_serie">Serie</label>
+          <select class="form-control" id="field_serie" data-cy="serie" name="serie" formControlName="serie">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="serieOption.id === editForm.get('serie')!.value?.id ? editForm.get('serie')!.value : serieOption"
+              *ngFor="let serieOption of seriesSharedCollection; trackBy: trackSerieById"
+            >
+              {{ serieOption.nomSerie }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="entMefpaiv2App.classe.proviseur" for="field_proviseur">Proviseur</label>
+          <select class="form-control" id="field_proviseur" data-cy="proviseur" name="proviseur" formControlName="proviseur">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="proviseurOption.id === editForm.get('proviseur')!.value?.id ? editForm.get('proviseur')!.value : proviseurOption"
+              *ngFor="let proviseurOption of proviseursSharedCollection; trackBy: trackProviseurById"
+            >
+              {{ proviseurOption.nom }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="entMefpaiv2App.classe.directeur" for="field_directeur">Directeur</label>
+          <select class="form-control" id="field_directeur" data-cy="directeur" name="directeur" formControlName="directeur">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="directeurOption.id === editForm.get('directeur')!.value?.id ? editForm.get('directeur')!.value : directeurOption"
+              *ngFor="let directeurOption of directeursSharedCollection; trackBy: trackDirecteurById"
+            >
+              {{ directeurOption.nom }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="entMefpaiv2App.classe.surveillant" for="field_surveillant">Surveillant</label>
+          <select class="form-control" id="field_surveillant" data-cy="surveillant" name="surveillant" formControlName="surveillant">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                surveillantOption.id === editForm.get('surveillant')!.value?.id ? editForm.get('surveillant')!.value : surveillantOption
+              "
+              *ngFor="let surveillantOption of surveillantsSharedCollection; trackBy: trackSurveillantById"
+            >
+              {{ surveillantOption.nom }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="entMefpaiv2App.classe.professeur" for="field_professeur">Professeur</label>
+          <select class="form-control" id="field_professeur" data-cy="professeur" name="professeur" formControlName="professeur">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                professeurOption.id === editForm.get('professeur')!.value?.id ? editForm.get('professeur')!.value : professeurOption
+              "
+              *ngFor="let professeurOption of professeursSharedCollection; trackBy: trackProfesseurById"
+            >
+              {{ professeurOption.nom }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

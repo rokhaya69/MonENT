@@ -1,0 +1,35 @@
+{
+  "entMefpaiv2App": {
+    "ressource": {
+      "home": {
+        "title": "Ressources",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Ressource",
+        "createOrEditLabel": "Créer ou éditer un Ressource",
+        "notFound": "Aucun Ressource trouvé"
+      },
+      "created": "Un nouveau Ressource a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Ressource avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Ressource avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Ressource {{ id }} ?"
+      },
+      "detail": {
+        "title": "Ressource"
+      },
+      "id": "ID",
+      "libelRessource": "Libel Ressource",
+      "typeRessource": "Type Ressource",
+      "lienRessource": "Lien Ressource",
+      "dateMise": "Date Mise",
+      "apprenant": "Apprenant",
+      "groupe": "Groupe",
+      "cours": "Cours",
+      "persoAdmin": "Perso Admin",
+      "proviseur": "Proviseur",
+      "directeur": "Directeur",
+      "inspecteur": "Inspecteur",
+      "etablissement": "Etablissement"
+    }
+  }
+}

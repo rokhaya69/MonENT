@@ -1,0 +1,191 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-seance-heading" data-cy="SeanceCreateUpdateHeading" jhiTranslate="entMefpaiv2App.seance.home.createOrEditLabel">
+        Create or edit a Seance
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="entMefpaiv2App.seance.jourSeance" for="field_jourSeance">Jour Seance</label>
+          <select class="form-control" name="jourSeance" formControlName="jourSeance" id="field_jourSeance" data-cy="jourSeance">
+            <option [ngValue]="null">{{ 'entMefpaiv2App.Jour.null' | translate }}</option>
+            <option *ngFor="let jour of jourValues" [value]="jour">{{ 'entMefpaiv2App.Jour.' + jour | translate }}</option>
+          </select>
+          <div *ngIf="editForm.get('jourSeance')!.invalid && (editForm.get('jourSeance')!.dirty || editForm.get('jourSeance')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('jourSeance')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="entMefpaiv2App.seance.dateSeance" for="field_dateSeance">Date Seance</label>
+          <div class="input-group">
+            <input
+              id="field_dateSeance"
+              data-cy="dateSeance"
+              type="text"
+              class="form-control"
+              name="dateSeance"
+              ngbDatepicker
+              #dateSeanceDp="ngbDatepicker"
+              formControlName="dateSeance"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateSeanceDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+          <div *ngIf="editForm.get('dateSeance')!.invalid && (editForm.get('dateSeance')!.dirty || editForm.get('dateSeance')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('dateSeance')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="entMefpaiv2App.seance.dateDebut" for="field_dateDebut">Date Debut</label>
+          <div class="d-flex">
+            <input
+              id="field_dateDebut"
+              data-cy="dateDebut"
+              type="datetime-local"
+              class="form-control"
+              name="dateDebut"
+              formControlName="dateDebut"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          <div *ngIf="editForm.get('dateDebut')!.invalid && (editForm.get('dateDebut')!.dirty || editForm.get('dateDebut')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('dateDebut')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('dateDebut')?.errors?.ZonedDateTimelocal"
+              jhiTranslate="entity.validation.ZonedDateTimelocal"
+            >
+              This field should be a date and time.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="entMefpaiv2App.seance.dateFin" for="field_dateFin">Date Fin</label>
+          <div class="d-flex">
+            <input
+              id="field_dateFin"
+              data-cy="dateFin"
+              type="datetime-local"
+              class="form-control"
+              name="dateFin"
+              formControlName="dateFin"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          <div *ngIf="editForm.get('dateFin')!.invalid && (editForm.get('dateFin')!.dirty || editForm.get('dateFin')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('dateFin')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('dateFin')?.errors?.ZonedDateTimelocal"
+              jhiTranslate="entity.validation.ZonedDateTimelocal"
+            >
+              This field should be a date and time.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="entMefpaiv2App.seance.contenu" for="field_contenu">Contenu</label>
+          <select class="form-control" id="field_contenu" data-cy="contenu" name="contenu" formControlName="contenu">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="contenuOption.id === editForm.get('contenu')!.value?.id ? editForm.get('contenu')!.value : contenuOption"
+              *ngFor="let contenuOption of contenusCollection; trackBy: trackContenuById"
+            >
+              {{ contenuOption.nomContenu }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="entMefpaiv2App.seance.cours" for="field_cours">Cours</label>
+          <select class="form-control" id="field_cours" data-cy="cours" name="cours" formControlName="cours">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="coursOption.id === editForm.get('cours')!.value?.id ? editForm.get('cours')!.value : coursOption"
+              *ngFor="let coursOption of coursSharedCollection; trackBy: trackCoursById"
+            >
+              {{ coursOption.libelleCours }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="entMefpaiv2App.seance.salle" for="field_salle">Salle</label>
+          <select class="form-control" id="field_salle" data-cy="salle" name="salle" formControlName="salle">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="salleOption.id === editForm.get('salle')!.value?.id ? editForm.get('salle')!.value : salleOption"
+              *ngFor="let salleOption of sallesSharedCollection; trackBy: trackSalleById"
+            >
+              {{ salleOption.libelleSalle }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="entMefpaiv2App.seance.groupe" for="field_groupe">Groupe</label>
+          <select class="form-control" id="field_groupe" data-cy="groupe" name="groupe" formControlName="groupe">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="groupeOption.id === editForm.get('groupe')!.value?.id ? editForm.get('groupe')!.value : groupeOption"
+              *ngFor="let groupeOption of groupesSharedCollection; trackBy: trackGroupeById"
+            >
+              {{ groupeOption.nomGroupe }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

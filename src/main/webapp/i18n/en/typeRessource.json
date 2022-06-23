@@ -1,0 +1,10 @@
+{
+  "entMefpaiv2App": {
+    "TypeRessource": {
+      "null": "",
+      "SupportCours": "SupportCours",
+      "Evaluation": "Evaluation",
+      "AppliPeda": "AppliPeda"
+    }
+  }
+}

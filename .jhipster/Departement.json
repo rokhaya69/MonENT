@@ -1,0 +1,40 @@
+{
+  "applications": ["entMefpaiv2"],
+  "changelogDate": "20220623154612",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "departement",
+  "fields": [
+    {
+      "fieldName": "nomDept",
+      "fieldType": "NomDept",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "Dakar,Pikine,Rufisque,Guediawaye,Keur_Massar,Thies,Mbour,Tivaoune,Saint_Louis,Dagana,Podor,Diourbel,Mbacke,Bambey,Louga,Linguere,Kebemer,Fatick,Foundiougne,Gossas,Kaffrine,Birkelane,Koungheul,Malem_Hodar,Kaolack,Guinguineo,Nioro_du_Rip,Matam,Kanel,Ranerou,Tambacounda,Bakel,Goudiry,Koumpentoum,Kedougou,Salemata,Saraya,Kolda,Velingara,Medina_Yoro_Foulah,Sedhiou,Bounkiling,Goudomp,Ziguinchor,Bignona,Oussouye,Autres"
+    },
+    {
+      "fieldName": "autreDept",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Departement",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "commune",
+      "otherEntityRelationshipName": "departement",
+      "relationshipName": "commune",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "nomRegion",
+      "otherEntityName": "region",
+      "otherEntityRelationshipName": "departement",
+      "relationshipName": "region",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

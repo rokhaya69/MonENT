@@ -1,0 +1,65 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="parent">
+      <h2 data-cy="parentDetailsHeading"><span jhiTranslate="entMefpaiv2App.parent.detail.title">Parent</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ parent.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.parent.nom">Nom</span></dt>
+        <dd>
+          <span>{{ parent.nom }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.parent.prenom">Prenom</span></dt>
+        <dd>
+          <span>{{ parent.prenom }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.parent.email">Email</span></dt>
+        <dd>
+          <span>{{ parent.email }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.parent.adresse">Adresse</span></dt>
+        <dd>
+          <span>{{ parent.adresse }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.parent.telephone">Telephone</span></dt>
+        <dd>
+          <span>{{ parent.telephone }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.parent.sexe">Sexe</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'entMefpaiv2App.Sexe.' + parent.sexe }}">{{ parent.sexe }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.parent.photo">Photo</span></dt>
+        <dd>
+          <div *ngIf="parent.photo">
+            <a (click)="openFile(parent.photo, parent.photoContentType)">
+              <img [src]="'data:' + parent.photoContentType + ';base64,' + parent.photo" style="max-width: 100%" alt="parent image" />
+            </a>
+            {{ parent.photoContentType }}, {{ byteSize(parent.photo) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.parent.user">User</span></dt>
+        <dd>
+          <span>{{ parent.user?.login }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/parent', parent.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

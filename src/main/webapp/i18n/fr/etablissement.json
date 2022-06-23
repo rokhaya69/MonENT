@@ -1,0 +1,35 @@
+{
+  "entMefpaiv2App": {
+    "etablissement": {
+      "home": {
+        "title": "Etablissements",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Etablissement",
+        "createOrEditLabel": "Créer ou éditer un Etablissement",
+        "notFound": "Aucun Etablissement trouvé"
+      },
+      "created": "Un nouveau Etablissement a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Etablissement avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Etablissement avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Etablissement {{ id }} ?"
+      },
+      "detail": {
+        "title": "Etablissement"
+      },
+      "id": "ID",
+      "nomEtab": "Nom Etab",
+      "typeEtab": "Type Etab",
+      "email": "Email",
+      "telephone": "Telephone",
+      "proviseur": "Proviseur",
+      "directeur": "Directeur",
+      "commune": "Commune",
+      "professeur": "Professeur",
+      "filiere": "Filiere",
+      "serie": "Serie",
+      "ressource": "Ressource",
+      "inspection": "Inspection"
+    }
+  }
+}

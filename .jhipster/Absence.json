@@ -1,0 +1,47 @@
+{
+  "applications": ["entMefpaiv2"],
+  "changelogDate": "20220623153212",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "absence",
+  "fields": [
+    {
+      "fieldName": "motif",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "justifie",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Absence",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "seance",
+      "otherEntityRelationshipName": "absence",
+      "relationshipName": "seance",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "nom",
+      "otherEntityName": "apprenant",
+      "otherEntityRelationshipName": "absence",
+      "relationshipName": "apprenant",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "nomEvalu",
+      "otherEntityName": "evaluation",
+      "otherEntityRelationshipName": "absence",
+      "relationshipName": "evaluation",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

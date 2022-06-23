@@ -1,0 +1,146 @@
+<div>
+  <h2 id="page-heading" data-cy="EvaluationHeading">
+    <span jhiTranslate="entMefpaiv2App.evaluation.home.title">Evaluations</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="entMefpaiv2App.evaluation.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-evaluation"
+        [routerLink]="['/evaluation/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="entMefpaiv2App.evaluation.home.createLabel"> Create a new Evaluation </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="evaluations?.length === 0">
+    <span jhiTranslate="entMefpaiv2App.evaluation.home.notFound">No evaluations found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="evaluations && evaluations.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="nomEvalu">
+            <span jhiTranslate="entMefpaiv2App.evaluation.nomEvalu">Nom Evalu</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="typeEvalu">
+            <span jhiTranslate="entMefpaiv2App.evaluation.typeEvalu">Type Evalu</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="dateEva">
+            <span jhiTranslate="entMefpaiv2App.evaluation.dateEva">Date Eva</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="heureDebEva">
+            <span jhiTranslate="entMefpaiv2App.evaluation.heureDebEva">Heure Deb Eva</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="heureFinEva">
+            <span jhiTranslate="entMefpaiv2App.evaluation.heureFinEva">Heure Fin Eva</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="matiere.intituleMatiere">
+            <span jhiTranslate="entMefpaiv2App.evaluation.matiere">Matiere</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="groupe.nomGroupe">
+            <span jhiTranslate="entMefpaiv2App.evaluation.groupe">Groupe</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="professeur.nom">
+            <span jhiTranslate="entMefpaiv2App.evaluation.professeur">Professeur</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="salle.libelleSalle">
+            <span jhiTranslate="entMefpaiv2App.evaluation.salle">Salle</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let evaluation of evaluations; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/evaluation', evaluation.id, 'view']">{{ evaluation.id }}</a>
+          </td>
+          <td>{{ evaluation.nomEvalu }}</td>
+          <td jhiTranslate="{{ 'entMefpaiv2App.TypeEvalu.' + evaluation.typeEvalu }}">{{ evaluation.typeEvalu }}</td>
+          <td>{{ evaluation.dateEva | formatMediumDate }}</td>
+          <td>{{ evaluation.heureDebEva | formatMediumDatetime }}</td>
+          <td>{{ evaluation.heureFinEva | formatMediumDatetime }}</td>
+          <td>
+            <div *ngIf="evaluation.matiere">
+              <a [routerLink]="['/matiere', evaluation.matiere?.id, 'view']">{{ evaluation.matiere?.intituleMatiere }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="evaluation.groupe">
+              <a [routerLink]="['/groupe', evaluation.groupe?.id, 'view']">{{ evaluation.groupe?.nomGroupe }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="evaluation.professeur">
+              <a [routerLink]="['/professeur', evaluation.professeur?.id, 'view']">{{ evaluation.professeur?.nom }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="evaluation.salle">
+              <a [routerLink]="['/salle', evaluation.salle?.id, 'view']">{{ evaluation.salle?.libelleSalle }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/evaluation', evaluation.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/evaluation', evaluation.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(evaluation)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="evaluations && evaluations.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,65 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="mefpai">
+      <h2 data-cy="mefpaiDetailsHeading"><span jhiTranslate="entMefpaiv2App.mefpai.detail.title">Mefpai</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ mefpai.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.mefpai.nom">Nom</span></dt>
+        <dd>
+          <span>{{ mefpai.nom }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.mefpai.prenom">Prenom</span></dt>
+        <dd>
+          <span>{{ mefpai.prenom }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.mefpai.email">Email</span></dt>
+        <dd>
+          <span>{{ mefpai.email }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.mefpai.adresse">Adresse</span></dt>
+        <dd>
+          <span>{{ mefpai.adresse }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.mefpai.telephone">Telephone</span></dt>
+        <dd>
+          <span>{{ mefpai.telephone }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.mefpai.sexe">Sexe</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'entMefpaiv2App.Sexe.' + mefpai.sexe }}">{{ mefpai.sexe }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.mefpai.photo">Photo</span></dt>
+        <dd>
+          <div *ngIf="mefpai.photo">
+            <a (click)="openFile(mefpai.photo, mefpai.photoContentType)">
+              <img [src]="'data:' + mefpai.photoContentType + ';base64,' + mefpai.photo" style="max-width: 100%" alt="mefpai image" />
+            </a>
+            {{ mefpai.photoContentType }}, {{ byteSize(mefpai.photo) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.mefpai.user">User</span></dt>
+        <dd>
+          <span>{{ mefpai.user?.login }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/mefpai', mefpai.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

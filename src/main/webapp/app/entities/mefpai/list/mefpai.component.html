@@ -1,0 +1,119 @@
+<div>
+  <h2 id="page-heading" data-cy="MefpaiHeading">
+    <span jhiTranslate="entMefpaiv2App.mefpai.home.title">Mefpais</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="entMefpaiv2App.mefpai.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-mefpai"
+        [routerLink]="['/mefpai/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="entMefpaiv2App.mefpai.home.createLabel"> Create a new Mefpai </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="mefpais?.length === 0">
+    <span jhiTranslate="entMefpaiv2App.mefpai.home.notFound">No mefpais found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="mefpais && mefpais.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="nom"><span jhiTranslate="entMefpaiv2App.mefpai.nom">Nom</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="prenom">
+            <span jhiTranslate="entMefpaiv2App.mefpai.prenom">Prenom</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="email">
+            <span jhiTranslate="entMefpaiv2App.mefpai.email">Email</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="adresse">
+            <span jhiTranslate="entMefpaiv2App.mefpai.adresse">Adresse</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="telephone">
+            <span jhiTranslate="entMefpaiv2App.mefpai.telephone">Telephone</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="sexe"><span jhiTranslate="entMefpaiv2App.mefpai.sexe">Sexe</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="photo">
+            <span jhiTranslate="entMefpaiv2App.mefpai.photo">Photo</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="user.login">
+            <span jhiTranslate="entMefpaiv2App.mefpai.user">User</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let mefpai of mefpais; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/mefpai', mefpai.id, 'view']">{{ mefpai.id }}</a>
+          </td>
+          <td>{{ mefpai.nom }}</td>
+          <td>{{ mefpai.prenom }}</td>
+          <td>{{ mefpai.email }}</td>
+          <td>{{ mefpai.adresse }}</td>
+          <td>{{ mefpai.telephone }}</td>
+          <td jhiTranslate="{{ 'entMefpaiv2App.Sexe.' + mefpai.sexe }}">{{ mefpai.sexe }}</td>
+          <td>
+            <a *ngIf="mefpai.photo" (click)="openFile(mefpai.photo, mefpai.photoContentType)">
+              <img [src]="'data:' + mefpai.photoContentType + ';base64,' + mefpai.photo" style="max-height: 30px" alt="mefpai image" />
+            </a>
+            <span *ngIf="mefpai.photo">{{ mefpai.photoContentType }}, {{ byteSize(mefpai.photo) }}</span>
+          </td>
+          <td>
+            {{ mefpai.user?.login }}
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/mefpai', mefpai.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/mefpai', mefpai.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(mefpai)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="mefpais && mefpais.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

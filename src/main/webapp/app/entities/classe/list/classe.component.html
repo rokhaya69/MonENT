@@ -1,0 +1,144 @@
+<div>
+  <h2 id="page-heading" data-cy="ClasseHeading">
+    <span jhiTranslate="entMefpaiv2App.classe.home.title">Classes</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="entMefpaiv2App.classe.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-classe"
+        [routerLink]="['/classe/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="entMefpaiv2App.classe.home.createLabel"> Create a new Classe </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="classes?.length === 0">
+    <span jhiTranslate="entMefpaiv2App.classe.home.notFound">No classes found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="classes && classes.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="titre">
+            <span jhiTranslate="entMefpaiv2App.classe.titre">Titre</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="niveauEtude">
+            <span jhiTranslate="entMefpaiv2App.classe.niveauEtude">Niveau Etude</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="autreNiveau">
+            <span jhiTranslate="entMefpaiv2App.classe.autreNiveau">Autre Niveau</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="filiere.nomFiliere">
+            <span jhiTranslate="entMefpaiv2App.classe.filiere">Filiere</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="serie.nomSerie">
+            <span jhiTranslate="entMefpaiv2App.classe.serie">Serie</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="proviseur.nom">
+            <span jhiTranslate="entMefpaiv2App.classe.proviseur">Proviseur</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="directeur.nom">
+            <span jhiTranslate="entMefpaiv2App.classe.directeur">Directeur</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="surveillant.nom">
+            <span jhiTranslate="entMefpaiv2App.classe.surveillant">Surveillant</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="professeur.nom">
+            <span jhiTranslate="entMefpaiv2App.classe.professeur">Professeur</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let classe of classes; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/classe', classe.id, 'view']">{{ classe.id }}</a>
+          </td>
+          <td>{{ classe.titre }}</td>
+          <td jhiTranslate="{{ 'entMefpaiv2App.NiveauEtude.' + classe.niveauEtude }}">{{ classe.niveauEtude }}</td>
+          <td>{{ classe.autreNiveau }}</td>
+          <td>
+            <div *ngIf="classe.filiere">
+              <a [routerLink]="['/filiere', classe.filiere?.id, 'view']">{{ classe.filiere?.nomFiliere }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="classe.serie">
+              <a [routerLink]="['/serie', classe.serie?.id, 'view']">{{ classe.serie?.nomSerie }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="classe.proviseur">
+              <a [routerLink]="['/proviseur', classe.proviseur?.id, 'view']">{{ classe.proviseur?.nom }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="classe.directeur">
+              <a [routerLink]="['/directeur', classe.directeur?.id, 'view']">{{ classe.directeur?.nom }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="classe.surveillant">
+              <a [routerLink]="['/surveillant', classe.surveillant?.id, 'view']">{{ classe.surveillant?.nom }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="classe.professeur">
+              <a [routerLink]="['/professeur', classe.professeur?.id, 'view']">{{ classe.professeur?.nom }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/classe', classe.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/classe', classe.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(classe)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="classes && classes.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

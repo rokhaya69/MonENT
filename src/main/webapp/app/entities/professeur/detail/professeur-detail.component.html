@@ -1,0 +1,83 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="professeur">
+      <h2 data-cy="professeurDetailsHeading"><span jhiTranslate="entMefpaiv2App.professeur.detail.title">Professeur</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ professeur.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.professeur.nom">Nom</span></dt>
+        <dd>
+          <span>{{ professeur.nom }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.professeur.prenom">Prenom</span></dt>
+        <dd>
+          <span>{{ professeur.prenom }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.professeur.email">Email</span></dt>
+        <dd>
+          <span>{{ professeur.email }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.professeur.adresse">Adresse</span></dt>
+        <dd>
+          <span>{{ professeur.adresse }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.professeur.telephone">Telephone</span></dt>
+        <dd>
+          <span>{{ professeur.telephone }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.professeur.sexe">Sexe</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'entMefpaiv2App.Sexe.' + professeur.sexe }}">{{ professeur.sexe }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.professeur.photo">Photo</span></dt>
+        <dd>
+          <div *ngIf="professeur.photo">
+            <a (click)="openFile(professeur.photo, professeur.photoContentType)">
+              <img
+                [src]="'data:' + professeur.photoContentType + ';base64,' + professeur.photo"
+                style="max-width: 100%"
+                alt="professeur image"
+              />
+            </a>
+            {{ professeur.photoContentType }}, {{ byteSize(professeur.photo) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.professeur.specialite">Specialite</span></dt>
+        <dd>
+          <span>{{ professeur.specialite }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.professeur.niveauEnseign">Niveau Enseign</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'entMefpaiv2App.NiveauEnseignement.' + professeur.niveauEnseign }}">{{ professeur.niveauEnseign }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.professeur.user">User</span></dt>
+        <dd>
+          <span>{{ professeur.user?.login }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.professeur.etablissement">Etablissement</span></dt>
+        <dd>
+          <div *ngIf="professeur.etablissement">
+            <a [routerLink]="['/etablissement', professeur.etablissement?.id, 'view']">{{ professeur.etablissement?.nomEtab }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/professeur', professeur.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

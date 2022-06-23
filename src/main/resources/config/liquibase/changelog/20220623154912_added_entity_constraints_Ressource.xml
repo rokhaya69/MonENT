@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity Ressource.
+    -->
+    <changeSet id="20220623154912-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="apprenant_id"
+                                 baseTableName="ressource"
+                                 constraintName="fk_ressource__apprenant_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="apprenant"/>
+
+        <addForeignKeyConstraint baseColumnNames="groupe_id"
+                                 baseTableName="ressource"
+                                 constraintName="fk_ressource__groupe_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="groupe"/>
+
+        <addForeignKeyConstraint baseColumnNames="cours_id"
+                                 baseTableName="ressource"
+                                 constraintName="fk_ressource__cours_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cours"/>
+
+        <addForeignKeyConstraint baseColumnNames="perso_admin_id"
+                                 baseTableName="ressource"
+                                 constraintName="fk_ressource__perso_admin_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="surveillant"/>
+
+        <addForeignKeyConstraint baseColumnNames="proviseur_id"
+                                 baseTableName="ressource"
+                                 constraintName="fk_ressource__proviseur_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="proviseur"/>
+
+        <addForeignKeyConstraint baseColumnNames="directeur_id"
+                                 baseTableName="ressource"
+                                 constraintName="fk_ressource__directeur_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="directeur"/>
+
+        <addForeignKeyConstraint baseColumnNames="inspecteur_id"
+                                 baseTableName="ressource"
+                                 constraintName="fk_ressource__inspecteur_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="inspecteur"/>
+    </changeSet>
+</databaseChangeLog>

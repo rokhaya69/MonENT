@@ -1,0 +1,75 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="etablissement">
+      <h2 data-cy="etablissementDetailsHeading"><span jhiTranslate="entMefpaiv2App.etablissement.detail.title">Etablissement</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ etablissement.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.etablissement.nomEtab">Nom Etab</span></dt>
+        <dd>
+          <span>{{ etablissement.nomEtab }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.etablissement.typeEtab">Type Etab</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'entMefpaiv2App.TypeEtab.' + etablissement.typeEtab }}">{{ etablissement.typeEtab }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.etablissement.email">Email</span></dt>
+        <dd>
+          <span>{{ etablissement.email }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.etablissement.telephone">Telephone</span></dt>
+        <dd>
+          <span>{{ etablissement.telephone }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.etablissement.proviseur">Proviseur</span></dt>
+        <dd>
+          <div *ngIf="etablissement.proviseur">
+            <a [routerLink]="['/proviseur', etablissement.proviseur?.id, 'view']">{{ etablissement.proviseur?.nom }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.etablissement.directeur">Directeur</span></dt>
+        <dd>
+          <div *ngIf="etablissement.directeur">
+            <a [routerLink]="['/directeur', etablissement.directeur?.id, 'view']">{{ etablissement.directeur?.nom }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.etablissement.commune">Commune</span></dt>
+        <dd>
+          <div *ngIf="etablissement.commune">
+            <a [routerLink]="['/commune', etablissement.commune?.id, 'view']">{{ etablissement.commune?.nomCom }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.etablissement.ressource">Ressource</span></dt>
+        <dd>
+          <span *ngFor="let ressource of etablissement.ressources; let last = last">
+            <a [routerLink]="['/ressource', ressource?.id, 'view']">{{ ressource.libelRessource }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.etablissement.inspection">Inspection</span></dt>
+        <dd>
+          <div *ngIf="etablissement.inspection">
+            <a [routerLink]="['/inspection', etablissement.inspection?.id, 'view']">{{ etablissement.inspection?.nomInspec }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/etablissement', etablissement.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

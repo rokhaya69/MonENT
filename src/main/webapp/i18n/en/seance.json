@@ -1,0 +1,32 @@
+{
+  "entMefpaiv2App": {
+    "seance": {
+      "home": {
+        "title": "Seances",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Seance",
+        "createOrEditLabel": "Create or edit a Seance",
+        "notFound": "No Seances found"
+      },
+      "created": "A new Seance is created with identifier {{ param }}",
+      "updated": "A Seance is updated with identifier {{ param }}",
+      "deleted": "A Seance is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Seance {{ id }}?"
+      },
+      "detail": {
+        "title": "Seance"
+      },
+      "id": "ID",
+      "jourSeance": "Jour Seance",
+      "dateSeance": "Date Seance",
+      "dateDebut": "Date Debut",
+      "dateFin": "Date Fin",
+      "contenu": "Contenu",
+      "cours": "Cours",
+      "salle": "Salle",
+      "groupe": "Groupe",
+      "absence": "Absence"
+    }
+  }
+}

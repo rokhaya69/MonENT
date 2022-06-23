@@ -1,0 +1,33 @@
+{
+  "entMefpaiv2App": {
+    "directeur": {
+      "home": {
+        "title": "Directeurs",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Directeur",
+        "createOrEditLabel": "Create or edit a Directeur",
+        "notFound": "No Directeurs found"
+      },
+      "created": "A new Directeur is created with identifier {{ param }}",
+      "updated": "A Directeur is updated with identifier {{ param }}",
+      "deleted": "A Directeur is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Directeur {{ id }}?"
+      },
+      "detail": {
+        "title": "Directeur"
+      },
+      "id": "ID",
+      "nom": "Nom",
+      "prenom": "Prenom",
+      "email": "Email",
+      "adresse": "Adresse",
+      "telephone": "Telephone",
+      "sexe": "Sexe",
+      "photo": "Photo",
+      "user": "User",
+      "ressource": "Ressource",
+      "classe": "Classe"
+    }
+  }
+}

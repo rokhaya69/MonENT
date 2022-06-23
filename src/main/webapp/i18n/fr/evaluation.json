@@ -1,0 +1,35 @@
+{
+  "entMefpaiv2App": {
+    "evaluation": {
+      "home": {
+        "title": "Evaluations",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Evaluation",
+        "createOrEditLabel": "Créer ou éditer un Evaluation",
+        "notFound": "Aucun Evaluation trouvé"
+      },
+      "created": "Un nouveau Evaluation a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Evaluation avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Evaluation avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Evaluation {{ id }} ?"
+      },
+      "detail": {
+        "title": "Evaluation"
+      },
+      "id": "ID",
+      "nomEvalu": "Nom Evalu",
+      "typeEvalu": "Type Evalu",
+      "dateEva": "Date Eva",
+      "heureDebEva": "Heure Deb Eva",
+      "heureFinEva": "Heure Fin Eva",
+      "note": "Note",
+      "absence": "Absence",
+      "matiere": "Matiere",
+      "groupe": "Groupe",
+      "professeur": "Professeur",
+      "salle": "Salle",
+      "surveillant": "Surveillant"
+    }
+  }
+}

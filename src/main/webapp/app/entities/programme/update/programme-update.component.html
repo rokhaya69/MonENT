@@ -1,0 +1,151 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-programme-heading" data-cy="ProgrammeCreateUpdateHeading" jhiTranslate="entMefpaiv2App.programme.home.createOrEditLabel">
+        Create or edit a Programme
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="entMefpaiv2App.programme.nomProgram" for="field_nomProgram">Nom Program</label>
+          <input
+            type="text"
+            class="form-control"
+            name="nomProgram"
+            id="field_nomProgram"
+            data-cy="nomProgram"
+            formControlName="nomProgram"
+          />
+          <div *ngIf="editForm.get('nomProgram')!.invalid && (editForm.get('nomProgram')!.dirty || editForm.get('nomProgram')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('nomProgram')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="entMefpaiv2App.programme.contenuProgram" for="field_contenuProgram"
+            >Contenu Program</label
+          >
+          <div>
+            <div *ngIf="editForm.get('contenuProgram')!.value" class="form-text text-danger clearfix">
+              <a
+                class="pull-start"
+                (click)="openFile(editForm.get('contenuProgram')!.value, editForm.get('contenuProgramContentType')!.value)"
+                jhiTranslate="entity.action.open"
+                >open</a
+              ><br />
+              <span class="pull-start"
+                >{{ editForm.get('contenuProgramContentType')!.value }}, {{ byteSize(editForm.get('contenuProgram')!.value) }}</span
+              >
+              <button
+                type="button"
+                (click)="editForm.patchValue({ contenuProgram: null }); editForm.patchValue({ contenuProgramContentType: null })"
+                class="btn btn-secondary btn-xs pull-end"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_contenuProgram"
+              data-cy="contenuProgram"
+              (change)="setFileData($event, 'contenuProgram', false)"
+              jhiTranslate="entity.action.addblob"
+            />
+          </div>
+          <input
+            type="hidden"
+            class="form-control"
+            name="contenuProgram"
+            id="field_contenuProgram"
+            data-cy="contenuProgram"
+            formControlName="contenuProgram"
+          />
+          <input
+            type="hidden"
+            class="form-control"
+            name="contenuProgramContentType"
+            id="field_contenuProgramContentType"
+            formControlName="contenuProgramContentType"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="entMefpaiv2App.programme.annee" for="field_annee">Annee</label>
+          <div class="input-group">
+            <input
+              id="field_annee"
+              data-cy="annee"
+              type="text"
+              class="form-control"
+              name="annee"
+              ngbDatepicker
+              #anneeDp="ngbDatepicker"
+              formControlName="annee"
+            />
+            <button type="button" class="btn btn-secondary" (click)="anneeDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+          <div *ngIf="editForm.get('annee')!.invalid && (editForm.get('annee')!.dirty || editForm.get('annee')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('annee')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="entMefpaiv2App.programme.filiere" for="field_filiere">Filiere</label>
+          <select class="form-control" id="field_filiere" data-cy="filiere" name="filiere" formControlName="filiere">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="filiereOption.id === editForm.get('filiere')!.value?.id ? editForm.get('filiere')!.value : filiereOption"
+              *ngFor="let filiereOption of filieresCollection; trackBy: trackFiliereById"
+            >
+              {{ filiereOption.nomFiliere }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="entMefpaiv2App.programme.serie" for="field_serie">Serie</label>
+          <select class="form-control" id="field_serie" data-cy="serie" name="serie" formControlName="serie">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="serieOption.id === editForm.get('serie')!.value?.id ? editForm.get('serie')!.value : serieOption"
+              *ngFor="let serieOption of seriesCollection; trackBy: trackSerieById"
+            >
+              {{ serieOption.nomSerie }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

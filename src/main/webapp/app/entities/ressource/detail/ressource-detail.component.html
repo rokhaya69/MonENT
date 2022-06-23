@@ -1,0 +1,89 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="ressource">
+      <h2 data-cy="ressourceDetailsHeading"><span jhiTranslate="entMefpaiv2App.ressource.detail.title">Ressource</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ ressource.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.ressource.libelRessource">Libel Ressource</span></dt>
+        <dd>
+          <span>{{ ressource.libelRessource }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.ressource.typeRessource">Type Ressource</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'entMefpaiv2App.TypeRessource.' + ressource.typeRessource }}">{{ ressource.typeRessource }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.ressource.lienRessource">Lien Ressource</span></dt>
+        <dd>
+          <div *ngIf="ressource.lienRessource">
+            <a (click)="openFile(ressource.lienRessource, ressource.lienRessourceContentType)" jhiTranslate="entity.action.open">open</a>
+            {{ ressource.lienRessourceContentType }}, {{ byteSize(ressource.lienRessource) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.ressource.dateMise">Date Mise</span></dt>
+        <dd>
+          <span>{{ ressource.dateMise | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.ressource.apprenant">Apprenant</span></dt>
+        <dd>
+          <div *ngIf="ressource.apprenant">
+            <a [routerLink]="['/apprenant', ressource.apprenant?.id, 'view']">{{ ressource.apprenant?.nom }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.ressource.groupe">Groupe</span></dt>
+        <dd>
+          <div *ngIf="ressource.groupe">
+            <a [routerLink]="['/groupe', ressource.groupe?.id, 'view']">{{ ressource.groupe?.nomGroupe }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.ressource.cours">Cours</span></dt>
+        <dd>
+          <div *ngIf="ressource.cours">
+            <a [routerLink]="['/cours', ressource.cours?.id, 'view']">{{ ressource.cours?.libelleCours }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.ressource.persoAdmin">Perso Admin</span></dt>
+        <dd>
+          <div *ngIf="ressource.persoAdmin">
+            <a [routerLink]="['/surveillant', ressource.persoAdmin?.id, 'view']">{{ ressource.persoAdmin?.nom }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.ressource.proviseur">Proviseur</span></dt>
+        <dd>
+          <div *ngIf="ressource.proviseur">
+            <a [routerLink]="['/proviseur', ressource.proviseur?.id, 'view']">{{ ressource.proviseur?.nom }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.ressource.directeur">Directeur</span></dt>
+        <dd>
+          <div *ngIf="ressource.directeur">
+            <a [routerLink]="['/directeur', ressource.directeur?.id, 'view']">{{ ressource.directeur?.nom }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.ressource.inspecteur">Inspecteur</span></dt>
+        <dd>
+          <div *ngIf="ressource.inspecteur">
+            <a [routerLink]="['/inspecteur', ressource.inspecteur?.id, 'view']">{{ ressource.inspecteur?.nom }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/ressource', ressource.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

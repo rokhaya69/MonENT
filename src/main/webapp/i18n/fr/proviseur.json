@@ -1,0 +1,33 @@
+{
+  "entMefpaiv2App": {
+    "proviseur": {
+      "home": {
+        "title": "Proviseurs",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Proviseur",
+        "createOrEditLabel": "Créer ou éditer un Proviseur",
+        "notFound": "Aucun Proviseur trouvé"
+      },
+      "created": "Un nouveau Proviseur a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Proviseur avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Proviseur avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Proviseur {{ id }} ?"
+      },
+      "detail": {
+        "title": "Proviseur"
+      },
+      "id": "ID",
+      "nom": "Nom",
+      "prenom": "Prenom",
+      "email": "Email",
+      "adresse": "Adresse",
+      "telephone": "Telephone",
+      "sexe": "Sexe",
+      "photo": "Photo",
+      "user": "User",
+      "ressource": "Ressource",
+      "classe": "Classe"
+    }
+  }
+}

@@ -1,0 +1,99 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-absence-heading" data-cy="AbsenceCreateUpdateHeading" jhiTranslate="entMefpaiv2App.absence.home.createOrEditLabel">
+        Create or edit a Absence
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="entMefpaiv2App.absence.motif" for="field_motif">Motif</label>
+          <input type="text" class="form-control" name="motif" id="field_motif" data-cy="motif" formControlName="motif" />
+          <div *ngIf="editForm.get('motif')!.invalid && (editForm.get('motif')!.dirty || editForm.get('motif')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('motif')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="entMefpaiv2App.absence.justifie" for="field_justifie">Justifie</label>
+          <input type="checkbox" class="form-check" name="justifie" id="field_justifie" data-cy="justifie" formControlName="justifie" />
+          <div *ngIf="editForm.get('justifie')!.invalid && (editForm.get('justifie')!.dirty || editForm.get('justifie')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('justifie')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="entMefpaiv2App.absence.seance" for="field_seance">Seance</label>
+          <select class="form-control" id="field_seance" data-cy="seance" name="seance" formControlName="seance">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="seanceOption.id === editForm.get('seance')!.value?.id ? editForm.get('seance')!.value : seanceOption"
+              *ngFor="let seanceOption of seancesSharedCollection; trackBy: trackSeanceById"
+            >
+              {{ seanceOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="entMefpaiv2App.absence.apprenant" for="field_apprenant">Apprenant</label>
+          <select class="form-control" id="field_apprenant" data-cy="apprenant" name="apprenant" formControlName="apprenant">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="apprenantOption.id === editForm.get('apprenant')!.value?.id ? editForm.get('apprenant')!.value : apprenantOption"
+              *ngFor="let apprenantOption of apprenantsSharedCollection; trackBy: trackApprenantById"
+            >
+              {{ apprenantOption.nom }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="entMefpaiv2App.absence.evaluation" for="field_evaluation">Evaluation</label>
+          <select class="form-control" id="field_evaluation" data-cy="evaluation" name="evaluation" formControlName="evaluation">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                evaluationOption.id === editForm.get('evaluation')!.value?.id ? editForm.get('evaluation')!.value : evaluationOption
+              "
+              *ngFor="let evaluationOption of evaluationsSharedCollection; trackBy: trackEvaluationById"
+            >
+              {{ evaluationOption.nomEvalu }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

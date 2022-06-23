@@ -1,0 +1,51 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="syllabus">
+      <h2 data-cy="syllabusDetailsHeading"><span jhiTranslate="entMefpaiv2App.syllabus.detail.title">Syllabus</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ syllabus.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.syllabus.nomSyllabus">Nom Syllabus</span></dt>
+        <dd>
+          <span>{{ syllabus.nomSyllabus }}</span>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.syllabus.syllabus">Syllabus</span></dt>
+        <dd>
+          <div *ngIf="syllabus.syllabus">
+            <a (click)="openFile(syllabus.syllabus, syllabus.syllabusContentType)" jhiTranslate="entity.action.open">open</a>
+            {{ syllabus.syllabusContentType }}, {{ byteSize(syllabus.syllabus) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.syllabus.programme">Programme</span></dt>
+        <dd>
+          <div *ngIf="syllabus.programme">
+            <a [routerLink]="['/programme', syllabus.programme?.id, 'view']">{{ syllabus.programme?.nomProgram }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="entMefpaiv2App.syllabus.matiere">Matiere</span></dt>
+        <dd>
+          <div *ngIf="syllabus.matiere">
+            <a [routerLink]="['/matiere', syllabus.matiere?.id, 'view']">{{ syllabus.matiere?.intituleMatiere }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/syllabus', syllabus.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

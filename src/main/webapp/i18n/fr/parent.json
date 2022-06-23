@@ -1,0 +1,32 @@
+{
+  "entMefpaiv2App": {
+    "parent": {
+      "home": {
+        "title": "Parents",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Parent",
+        "createOrEditLabel": "Créer ou éditer un Parent",
+        "notFound": "Aucun Parent trouvé"
+      },
+      "created": "Un nouveau Parent a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Parent avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Parent avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Parent {{ id }} ?"
+      },
+      "detail": {
+        "title": "Parent"
+      },
+      "id": "ID",
+      "nom": "Nom",
+      "prenom": "Prenom",
+      "email": "Email",
+      "adresse": "Adresse",
+      "telephone": "Telephone",
+      "sexe": "Sexe",
+      "photo": "Photo",
+      "user": "User",
+      "apprenant": "Apprenant"
+    }
+  }
+}
