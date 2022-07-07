@@ -2,14 +2,6 @@
 Main page styles
 ========================================================================== */
 
-.hipster {
-  display: inline-block;
-  width: 347px;
-  height: 497px;
-  background: url('../../content/images/jhipster_family_member_3.svg') no-repeat center top;
-  background-size: contain;
-}
-
 /* wait autoprefixer update to allow simple generation of high pixel density media query */
 @media only screen and (-webkit-min-device-pixel-ratio: 2),
   only screen and (-moz-min-device-pixel-ratio: 2),
@@ -20,4 +12,68 @@ Main page styles
     background: url('../../content/images/jhipster_family_member_3.svg') no-repeat center top;
     background-size: contain;
   }
+}
+.blog {
+  // background-color: thistle;
+  align-content: center;
+}
+
+.blog .blog-post {
+  padding-top: 5rem;
+  width: 100%;
+  background-size: 100%;
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 5rem;
+  padding-left: 4rem;
+  // background-color: aqua;
+  // padding-left: 7rem;
+  // padding-right: 1rem;
+  // align-content: center;
+}
+
+.blog-post .blog-content {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  overflow-wrap: break-word;
+  width: 25%;
+  margin: 1rem 1.5rem;
+  box-shadow: 0 15px 20px rgb(0, 0, 0, 0.2);
+  padding: 2rem 0;
+  // background-color: bisque;
+  margin-left: 1rem;
+}
+
+button.btn {
+  border: none;
+  border-radius: 2rem;
+  font-size: 1rem;
+  font-family: var(--Livvic);
+  cursor: pointer;
+  // background-color: aqua;
+}
+
+span {
+  font-family: var(--Abel);
+}
+.text-gray {
+  color: var(--bg-color);
+}
+
+p {
+  font-family: var(--Lexend);
+  color: var(--text-color);
+}
+
+.blog-content .btn-blog {
+  align-content: center;
+  text-align: center;
+  background: var(--sky);
+}
+
+.alert-light {
+  text-align: center;
+  font-size: x-large;
+  background: none;
 }

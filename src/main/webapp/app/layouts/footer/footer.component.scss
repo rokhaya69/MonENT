@@ -1,0 +1,106 @@
+// @import 'bootstrap-variables';
+// @import '~bootstrap/scss/functions';
+// @import '~bootstrap/scss/variables';
+// @import url(../../../content/fonts);
+// @import url(../../../content/js/main.js);
+// @import url(../../../content/js/jquery3.4.1.min.js);
+
+/*-----------------------------------Footer--------------------------------*/
+
+.footer {
+  background-image: url('../../../content/images/footer.PNG');
+  // background-color: rgb(12, 18, 104);
+  background-size: cover;
+  color: #fff;
+  width: 100%;
+  height: 100%;
+}
+.footer .container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.footer .container > div {
+  flex-grow: 1;
+  flex-basis: 0;
+  padding: 1rem 1rem;
+}
+.footer .container h3 {
+  color: black;
+}
+
+footer.footer .mo {
+  position: fixed;
+  right: 2%;
+  top: 50%;
+  display: block;
+  right: 10px;
+}
+
+footer.footer .mo span {
+  color: var(--midnight);
+}
+
+footer.footer .mo span:hover {
+  color: white;
+  cursor: pointer;
+}
+.footer .container .mefpai .pic {
+  height: 80px;
+  width: 90px;
+  display: inline-block;
+  vertical-align: middle;
+  background: url('../../../content/images/header.jpg');
+  background-size: cover;
+}
+
+// .footer .move-up span:hover{
+//   color: blue;
+//   cursor: pointer;
+// }
+/*
+  footer.footer .newsletter .form-element{
+      background: black;
+      display: inline-block;
+  }
+  
+  footer.footer .newsletter .form-element input{
+      padding: .5rem .7rem;
+      border: none;
+      background: transparent;
+      color: white;
+      font-family: var(--Josefin);
+      font-size: 1rem;
+      width: 60%;
+  }
+  
+  footer.footer .newsletter .form-element span{
+      background: var(--sky);
+      padding: .5rem .7rem;
+  }
+  
+  footer.footer .instagram div > img{
+      display: inline-block;
+      width: 25%;
+      height: 50%;
+      margin: .3rem .4rem;
+  }
+  
+  footer.footer .follow div i{
+      color: var(--white);
+      padding: 0 .4rem;
+  }¨
+  
+  
+  footer.footer .rights{
+      justify-content: center;
+      font-family: var(--Josefin);
+  }
+  footer.footer .rights h4 a{
+      color: var(--white);
+      justify-content: center;
+  }
+  
+  
+   */
+
+/*--------------------X---------------Footer------------------X--------------*/

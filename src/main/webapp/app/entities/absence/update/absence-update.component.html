@@ -1,17 +1,18 @@
 <div class="d-flex justify-content-center">
-  <div class="col-8">
+  <div class="col-6">
     <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <br />
       <h2 id="jhi-absence-heading" data-cy="AbsenceCreateUpdateHeading" jhiTranslate="entMefpaiv2App.absence.home.createOrEditLabel">
-        Create or edit a Absence
+        Create or edit Absence
       </h2>
 
       <div>
         <jhi-alert-error></jhi-alert-error>
 
-        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+        <!-- <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
           <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
           <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
-        </div>
+        </div> -->
 
         <div class="row mb-3">
           <label class="form-label" jhiTranslate="entMefpaiv2App.absence.motif" for="field_motif">Motif</label>
@@ -24,21 +25,7 @@
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" jhiTranslate="entMefpaiv2App.absence.justifie" for="field_justifie">Justifie</label>
-          <input type="checkbox" class="form-check" name="justifie" id="field_justifie" data-cy="justifie" formControlName="justifie" />
-          <div *ngIf="editForm.get('justifie')!.invalid && (editForm.get('justifie')!.dirty || editForm.get('justifie')!.touched)">
-            <small
-              class="form-text text-danger"
-              *ngIf="editForm.get('justifie')?.errors?.required"
-              jhiTranslate="entity.validation.required"
-            >
-              This field is required.
-            </small>
-          </div>
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="entMefpaiv2App.absence.seance" for="field_seance">Seance</label>
+          <label class="form-label" jhiTranslate="entMefpaiApp.absence.seance" for="field_seance">Seance</label>
           <select class="form-control" id="field_seance" data-cy="seance" name="seance" formControlName="seance">
             <option [ngValue]="null"></option>
             <option
@@ -51,7 +38,7 @@
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" jhiTranslate="entMefpaiv2App.absence.apprenant" for="field_apprenant">Apprenant</label>
+          <label class="form-label" jhiTranslate="entMefpaiApp.absence.apprenant" for="field_apprenant">Apprenant</label>
           <select class="form-control" id="field_apprenant" data-cy="apprenant" name="apprenant" formControlName="apprenant">
             <option [ngValue]="null"></option>
             <option
@@ -64,7 +51,7 @@
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" jhiTranslate="entMefpaiv2App.absence.evaluation" for="field_evaluation">Evaluation</label>
+          <label class="form-label" jhiTranslate="entMefpaiApp.absence.evaluation" for="field_evaluation">Evaluation</label>
           <select class="form-control" id="field_evaluation" data-cy="evaluation" name="evaluation" formControlName="evaluation">
             <option [ngValue]="null"></option>
             <option
@@ -76,6 +63,19 @@
               {{ evaluationOption.nomEvalu }}
             </option>
           </select>
+        </div>
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="entMefpaiApp.absence.justifie" for="field_justifie">Justifie</label>
+          <input type="checkbox" class="form-check" name="justifie" id="field_justifie" data-cy="justifie" formControlName="justifie" />
+          <div *ngIf="editForm.get('justifie')!.invalid && (editForm.get('justifie')!.dirty || editForm.get('justifie')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('justifie')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
         </div>
       </div>
 
@@ -94,6 +94,7 @@
           <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
         </button>
       </div>
+      <br /><br />
     </form>
   </div>
 </div>

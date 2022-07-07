@@ -1,6 +1,7 @@
 <div class="d-flex justify-content-center">
-  <div class="col-8">
+  <div class="col-6">
     <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <br />
       <h2 id="myUserLabel" jhiTranslate="userManagement.home.createOrEditLabel">Create or edit a User</h2>
 
       <div *ngIf="user">
@@ -146,6 +147,7 @@
           <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
         </button>
       </div>
+      <br /><br />
     </form>
   </div>
 </div>

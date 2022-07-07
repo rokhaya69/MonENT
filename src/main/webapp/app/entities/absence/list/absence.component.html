@@ -1,5 +1,6 @@
 <div>
   <h2 id="page-heading" data-cy="AbsenceHeading">
+    <br />
     <span jhiTranslate="entMefpaiv2App.absence.home.title">Absences</span>
 
     <div class="d-flex justify-content-end">
@@ -7,16 +8,24 @@
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
         <span jhiTranslate="entMefpaiv2App.absence.home.refreshListLabel">Refresh List</span>
       </button>
-
-      <button
-        id="jh-create-entity"
-        data-cy="entityCreateButton"
-        class="btn btn-primary jh-create-entity create-absence"
-        [routerLink]="['/absence/new']"
+      <li
+        *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_PROFESSEUR', 'ROLE_SURVEILLANT']"
+        ngbDropdown
+        class="nav-item dropdown pointer"
+        display="dynamic"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
       >
-        <fa-icon icon="plus"></fa-icon>
-        <span jhiTranslate="entMefpaiv2App.absence.home.createLabel"> Create a new Absence </span>
-      </button>
+        <button
+          id="jh-create-entity"
+          data-cy="entityCreateButton"
+          class="btn btn-primary jh-create-entity create-absence"
+          [routerLink]="['/absence/new']"
+        >
+          <fa-icon icon="plus"></fa-icon>
+          <span jhiTranslate="entMefpaiv2App.absence.home.createLabel"> Create Absence </span>
+        </button>
+      </li>
     </div>
   </h2>
 
@@ -32,32 +41,32 @@
     <table class="table table-striped" aria-describedby="page-heading">
       <thead>
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
-          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <!-- <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> </th> -->
           <th scope="col" jhiSortBy="motif">
-            <span jhiTranslate="entMefpaiv2App.absence.motif">Motif</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="justifie">
-            <span jhiTranslate="entMefpaiv2App.absence.justifie">Justifie</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="entMefpaiv2App.absence.motif">Motif</span>
           </th>
           <th scope="col" jhiSortBy="seance.id">
-            <span jhiTranslate="entMefpaiv2App.absence.seance">Seance</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="entMefpaiv2App.absence.seance">Seance</span>
           </th>
           <th scope="col" jhiSortBy="apprenant.nom">
-            <span jhiTranslate="entMefpaiv2App.absence.apprenant">Apprenant</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="entMefpaiv2App.absence.apprenant">Apprenant</span>
           </th>
           <th scope="col" jhiSortBy="evaluation.nomEvalu">
-            <span jhiTranslate="entMefpaiv2App.absence.evaluation">Evaluation</span> <fa-icon icon="sort"></fa-icon>
+            <span jhiTranslate="entMefpaiv2App.absence.evaluation">Evaluation</span>
+          </th>
+          <th scope="col" jhiSortBy="justifie">
+            <span jhiTranslate="entMefpaiv2App.absence.justifie">Justifie</span>
           </th>
           <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let absence of absences; trackBy: trackId" data-cy="entityTable">
-          <td>
+          <!-- <td>
             <a [routerLink]="['/absence', absence.id, 'view']">{{ absence.id }}</a>
-          </td>
+          </td> -->
           <td>{{ absence.motif }}</td>
-          <td>{{ absence.justifie }}</td>
+
           <td>
             <div *ngIf="absence.seance">
               <a [routerLink]="['/seance', absence.seance?.id, 'view']">{{ absence.seance?.id }}</a>
@@ -73,6 +82,7 @@
               <a [routerLink]="['/evaluation', absence.evaluation?.id, 'view']">{{ absence.evaluation?.nomEvalu }}</a>
             </div>
           </td>
+          <td>{{ absence.justifie }}</td>
           <td class="text-end">
             <div class="btn-group">
               <button
@@ -85,20 +95,37 @@
                 <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
               </button>
 
-              <button
-                type="submit"
-                [routerLink]="['/absence', absence.id, 'edit']"
-                class="btn btn-primary btn-sm"
-                data-cy="entityEditButton"
+              <li
+                *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_PROFESSEUR', 'ROLE_SURVEILLANT']"
+                ngbDropdown
+                class="nav-item dropdown pointer"
+                display="dynamic"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
               >
-                <fa-icon icon="pencil-alt"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
-              </button>
-
-              <button type="submit" (click)="delete(absence)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
-                <fa-icon icon="times"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
-              </button>
+                <button
+                  type="submit"
+                  [routerLink]="['/absence', absence.id, 'edit']"
+                  class="btn btn-primary btn-sm"
+                  data-cy="entityEditButton"
+                >
+                  <fa-icon icon="pencil-alt"></fa-icon>
+                  <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                </button>
+              </li>
+              <li
+                *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_PROFESSEUR', 'ROLE_SURVEILLANT']"
+                ngbDropdown
+                class="nav-item dropdown pointer"
+                display="dynamic"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+              >
+                <button type="submit" (click)="delete(absence)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                  <fa-icon icon="times"></fa-icon>
+                  <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                </button>
+              </li>
             </div>
           </td>
         </tr>

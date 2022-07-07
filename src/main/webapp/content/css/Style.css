@@ -1,0 +1,35 @@
+@import url(../css/fonts.css);
+
+:root {
+  /*Theme colors*/
+  --text-gray: #411664;
+  --text-light: #95e2f091;
+  --bg-color: #0f0f0f;
+  --white: #ffffff;
+  --midnight: #721c99;
+  --text-color: #2b3a47;
+
+  /*gradient color*/
+  --sky: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+
+  /*theme font-family*/
+  --Abel: 'Abel', cursive;
+  --Anton: 'Anton', cursive;
+  --Josefin: 'Josefin', cursive;
+  --Lexend: 'Lexend', cursive;
+  --Livvic: 'Livvic', cursive;
+}
+
+/*----------------Global classes-------------*/
+
+h2 {
+  font-family: var(--Abel);
+  text-align: center;
+}
+
+h3 {
+  font-family: var(--Abel);
+  font-size: 1.3rem;
+}
+
+/* ----------X----Blog Carousel--------X------ */
